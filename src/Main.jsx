@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import VotingClient from './VotingClient';
-import VotingServer from './VotingServer';
+import VotingClientPage from './VotingClientPage';
+import VotingServerPage from './VotingServerPage';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -11,9 +11,9 @@ import VotingServer from './VotingServer';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={VotingClient}/>
-      <Route path='/server' component={VotingServer}/>
-      <Route path='/client' component={VotingClient}/>
+      <Route exact path='/' component={VotingClientPage}/>
+      <Route path='/server' component={VotingServerPage}/>
+      <Route path='/client' component={VotingClientPage}/>
     </Switch>
   </main>
 )

@@ -16,7 +16,8 @@ class VotingServer extends Component {
   }
 
   componentDidMount() {
-    database.ref('/pi/6/A/ratingCount').on('value', (snap) => {
+    let ref = "/polls/"+this.props.match.params.pollId+"/ratingCount";
+    database.ref(ref).on('value', (snap) => {
       this.setState({"countArray": snap.val()});
     });
   }
@@ -25,8 +26,8 @@ class VotingServer extends Component {
 
       return (
         <div>
-          <h1>Let's see the live votes</h1>
-          <BarChart data={[["Love", this.state.countArray[2]], ["Medium", this.state.countArray[1]], ["Hate", this.state.countArray[0]]]} />
+          <h1>Poll - {this.props.match.params.pollId}</h1>
+          <BarChart download={this.props.match.params.pollId} data={[["Love", this.state.countArray[2]], ["Medium", this.state.countArray[1]], ["Hate", this.state.countArray[0]]]} />
         </div>
       );
   }

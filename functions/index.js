@@ -20,7 +20,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 // Keeps track of the length of the 'likes' child list in a separate property.
-exports.countlikechange = functions.database.ref('/pi/6/A/votes/{pushId}').onWrite(
+exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId}').onWrite(
     (change) => {
       const collectionRef = change.after.ref.parent;
       // const countRef = collectionRef.parent.child('ratingCount');

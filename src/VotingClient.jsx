@@ -18,7 +18,9 @@ class VotingClient extends Component {
   handleRatingCallback(rating) {
     console.log(rating);
     this.setState({hadVoted: true, rating: rating});
-    database.ref('/pi/6/A/votes').push({
+    // database.ref('/pi/6/A/votes').push({
+      let ref = "/polls/"+this.props.match.params.pollId+"/votes";
+      database.ref(ref).push({
       'rating' : rating,
     });
     // database.ref('/pi/6/A/ratingCount').once('value').then( snap => {
@@ -38,7 +40,7 @@ class VotingClient extends Component {
       let result = this.state.result;
       return (
         <div>
-          <h1>Let's vote!?</h1>
+          <h1>Let's vote!? Poll ID = {this.props.match.params.pollId}</h1>
           {
           this.state.hadVoted === true ? <Result rating={this.state.rating}/> : <Vote callbackVote={this.handleRatingCallback}/> 
           }
