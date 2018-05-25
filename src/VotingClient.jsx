@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import Vote from './Vote';
 import Result from './Result';
 import database from './database.js';
+import { Typography, withStyles, Icon, IconButton } from 'material-ui';
+
+const styles = {
+  voteContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    flexFlow: "column",
+  },
+  contentContainer: {
+    height: "100%",
+  },
+  header: {
+    textAlign: "center",
+    margin: "30px auto"
+  }
+}
 
 class VotingClient extends Component {
   constructor(props) {
@@ -18,35 +36,29 @@ class VotingClient extends Component {
   handleRatingCallback(rating) {
     console.log(rating);
     this.setState({hadVoted: true, rating: rating});
-    // database.ref('/pi/6/A/votes').push({
-      let ref = "/polls/"+this.props.match.params.pollId+"/votes";
-      database.ref(ref).push({
+    let ref = "/polls/"+this.props.match.params.pollId+"/votes";
+    database.ref(ref).push({
       'rating' : rating,
     });
-    // database.ref('/pi/6/A/ratingCount').once('value').then( snap => {
-    //   var old_count = parseInt(snap.val(),10);
-    //   var new_count = old_count;
-    //   if (this.state.rating == 'Love') {
-    //     new_count[0] = new_count[0]+1;
-    //   } else {
-    //     new_count[1] = new_count[1]+1;
-    //   }
-    //   this.setState({countArray: new_count});
-    // })
-    // database.ref('/pi/6/A/ratingCount').update({countArray: this.state.new_count});
   }
   render() {
 
-      let result = this.state.result;
-      return (
-        <div>
-          <h1>Let's vote!? Poll ID = {this.props.match.params.pollId}</h1>
+    const { classes } = this.props;
+    let result = this.state.result;
+    return (
+      <div className={classes.contentContainer}>
+        <div className={classes.header}>
+          <Typography variant="headline">Let's vote!</Typography>
+          <Typography variant="subheading">Poll ID = {this.props.match.params.pollId}</Typography>
+        </div>
+        <div className={classes.voteContainer}>
           {
           this.state.hadVoted === true ? <Result rating={this.state.rating}/> : <Vote callbackVote={this.handleRatingCallback}/> 
           }
         </div>
-      );
+      </div>
+    );
   }
 }
 
-export default VotingClient;
+export default withStyles(styles)(VotingClient);

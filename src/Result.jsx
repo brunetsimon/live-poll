@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import { Button, Paper } from 'material-ui';
+import { withStyles, Paper, Icon, IconButton, Typography } from 'material-ui';
 import ratingsConst from './contants';
 
+const styles = {
+  result: {
+    padding: "30px",
+    textAlign: "center",
+  },
+  icon: {
+    fontSize: "80px",
+  }
+}
 
 class Result extends Component {
 
   render() {
+
+    const { classes } = this.props;
+
     return(
-      <Paper>
-        <h2>Thank you for voting</h2>
-        <h3>Your rating: {ratingsConst[this.props.rating].text} - {ratingsConst[this.props.rating].id}</h3>
+      <Paper className={classes.result}>
+        <Typography variant="headline">Thank you for voting</Typography>
+        <Typography variant="subheading" gutterBottom="true">Your rating:</Typography>
+        <Icon className={classes.icon}>{ratingsConst[this.props.rating].icon}</Icon>
       </Paper>
     );
   }
 }
 
-export default Result;
+export default withStyles(styles)(Result);

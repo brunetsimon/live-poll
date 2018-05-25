@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
-import { Button, Paper } from 'material-ui';
+import { IconButton, Icon, withStyles } from 'material-ui';
 import ratingsConst from './contants';
 
+
+const styles = {
+  iconButton: {
+    display: "block",
+    height: "16vh",
+    width: "16vh",
+  },
+  icon: {
+    fontSize: "80px",
+  }
+}
 
 class Vote extends Component {
 
   render() {
-    let listButtons = ratingsConst.map( rating => <Button key={rating.id} onClick={this.props.callbackVote.bind(null, rating.id)}>{rating.text}</Button>);
+    
+    const { classes } = this.props;
+
+    let listButtons = ratingsConst.map( rating => <IconButton className={classes.iconButton} color="primary" key={rating.id} onClick={this.props.callbackVote.bind(null, rating.id)}><Icon className={classes.icon}>{rating.icon}</Icon></IconButton>);
     return(
-      <Paper>
+      <div>
         {listButtons}
-        {/* <Button onClick={this.props.callbackVote.bind(null, 'Love')}></Button>
-        <Button onClick={this.props.callbackVote.bind(null, 'Hate')}>Hate</Button> */}
-      </Paper>
+      </div>
     );
   }
 }
 
-export default Vote;
+export default withStyles(styles)(Vote);

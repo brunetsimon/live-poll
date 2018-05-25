@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import database from './database.js';
 
-import ReactChartkick, { BarChart } from 'react-chartkick'
-import Chart from 'chart.js'
+import ReactChartkick, { BarChart } from 'react-chartkick';
+import Chart from 'chart.js';
 
 ReactChartkick.addAdapter(Chart);
 

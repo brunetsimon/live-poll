@@ -1,19 +1,27 @@
 const ratingsConst = [
+
   {
-    text: "Hate",
-    img: "/0.jpg",
+    text: "Love",
+    icon: "sentiment_very_satisfied",
     id: 0,
   },
   {
-    text: "Medium",
-    img: "/1.jpg",
+    text: "Medium high",
+    icon: "sentiment_satisfied",
     id: 1,
   },
   {
-    text: "Love",
-    img: "/2.jpg",
+    text: "Medium low",
+    icon: "sentiment_dissatisfied",
     id: 2,
   },
+  {
+    text: "Hate",
+    icon: "sentiment_very_dissatisfied",
+    id: 3,
+  },
+  
+  
 
 ];
 

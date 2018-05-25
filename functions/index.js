@@ -47,6 +47,9 @@ exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId
         case 2:
           countRef = collectionRef.parent.child('ratingCount/2');
           break;
+        case 3:
+          countRef = collectionRef.parent.child('ratingCount/3');
+          break;
         default:
           break;
       }

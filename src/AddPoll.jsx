@@ -20,7 +20,7 @@ const styles = {
   }
 }
 
-class VotingClientSelector extends Component {
+class AddPoll extends Component {
 
 
   constructor(props) {
@@ -28,7 +28,6 @@ class VotingClientSelector extends Component {
 
     this.state = {
       pollId: "",
-      errorMsg: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -36,20 +35,14 @@ class VotingClientSelector extends Component {
   }
 
   handleInputChange(event) {
-    this.setState({pollId: event.target.value, errorMsg:""});
+    this.setState({pollId: event.target.value});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
-    let ref = "/polls/"+this.state.pollId;
-  this.setState({validateStatus: 'validating', errorMsg: ""})
-    database.ref(ref).once('value', (snap) => {
-      if (snap.val() != null) {
-        this.props.history.push(`/client/${this.state.pollId}`);
-      } else {
-        this.setState({showError : true, errorMsg: "Wrong ID"});
-      }
+    let ref = "/polls/"+this.state.pollId+"/ratingCount";
+    database.ref(ref).push({
+      '0' : 0,
     });
   }
   render() {
@@ -58,14 +51,13 @@ class VotingClientSelector extends Component {
     return(
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom="true" >Enter your poll number</Typography>
+          <Typography variant="headline" gutterBottom="true" >Create poll ID</Typography>
           <form onSubmit={this.handleSubmit}>
-            <FormControl error={this.state.errorMsg != ""} fullWidth>
+            <FormControl fullWidth>
               <Input id="pollId" value={this.state.pollId} onChange={this.handleInputChange} />
-              <FormHelperText id="name-error-text">{this.state.errorMsg}</FormHelperText>
             </FormControl>
             <Button type='submit' color="primary" variant="raised" className={classes.button} fullWidth>
-              Go!
+              Create!
             </Button>
           </form>
         </Paper>
@@ -74,4 +66,4 @@ class VotingClientSelector extends Component {
   }
 };
 
-export default withStyles(styles)(VotingClientSelector);
+export default withStyles(styles)(AddPoll);
