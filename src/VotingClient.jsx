@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Vote from './Vote';
 import Result from './Result';
 import database from './database.js';
-import { Typography, withStyles, Icon, IconButton } from 'material-ui';
+import { Typography, withStyles } from 'material-ui';
 
 const styles = {
   voteContainer: {
@@ -44,7 +44,7 @@ class VotingClient extends Component {
   render() {
 
     const { classes } = this.props;
-    let result = this.state.result;
+
     return (
       <div className={classes.contentContainer}>
         <div className={classes.header}>

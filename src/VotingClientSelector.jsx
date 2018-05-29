@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Input, Paper, Button, withStyles, Typography, FormControl, FormHelperText } from 'material-ui';
-import { Link } from 'react-router-dom';
 import database from './database.js';
 
 const styles = {
@@ -43,7 +42,7 @@ class VotingClientSelector extends Component {
     event.preventDefault();
 
     let ref = "/polls/"+this.state.pollId;
-  this.setState({validateStatus: 'validating', errorMsg: ""})
+    this.setState({validateStatus: 'validating', errorMsg: ""})
     database.ref(ref).once('value', (snap) => {
       if (snap.val() != null) {
         this.props.history.push(`/client/${this.state.pollId}`);
@@ -60,7 +59,7 @@ class VotingClientSelector extends Component {
         <Paper className={classes.formContainer}>
           <Typography variant="headline" gutterBottom="true" >Enter your poll number</Typography>
           <form onSubmit={this.handleSubmit}>
-            <FormControl error={this.state.errorMsg != ""} fullWidth>
+            <FormControl error={this.state.errorMsg !== ""} fullWidth>
               <Input id="pollId" value={this.state.pollId} onChange={this.handleInputChange} />
               <FormHelperText id="name-error-text">{this.state.errorMsg}</FormHelperText>
             </FormControl>

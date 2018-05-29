@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Paper, Button, withStyles, Typography, FormControl, FormHelperText } from 'material-ui';
-import { Link } from 'react-router-dom';
+import { Input, Paper, Button, withStyles, Typography, FormControl } from 'material-ui';
 import database from './database.js';
 
 const styles = {
