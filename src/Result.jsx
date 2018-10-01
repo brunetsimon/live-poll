@@ -19,11 +19,8 @@ class Result extends Component {
     const { classes } = this.props;
 
     return(
-      <Paper className={classes.result}>
-        <Typography variant="headline">Thank you for voting</Typography>
-        <Typography variant="subheading" gutterBottom="true">Your rating:</Typography>
-        <Icon className={classes.icon}>{ratingsConst[this.props.rating].icon}</Icon>
-      </Paper>
+      // Your code here. 
+      // See https://github.com/brunetsimon/live-poll/issues/2
     );
   }
 }
