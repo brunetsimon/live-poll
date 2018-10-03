@@ -1,0 +1,49 @@
+# Javascript Node CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/ for more details
+
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7.10
+    parallelism: 4
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore node_modules cache
+          keys:
+            - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-node-{{ arch }}-{{ .Branch }}-
+            - v1-node-{{ arch }}-
+      - run:
+          name: Nodejs Version
+          command: node --version
+      - run:
+          name: Install Packages
+          command: |
+            yarn install --frozen-lockfile
+            yarn add firebase-tools
+            yarn run firebase --version
+      - run:
+          name: Install Functions Packages
+          command: yarn install
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Test
+          command: |
+            yarn lint
+            yarn test --forceExit
+      - save_cache:
+          name: Save node_modules cache
+          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+            fi
