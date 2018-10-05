@@ -19,8 +19,10 @@ class Result extends Component {
     const { classes } = this.props;
 
     return(
-      // Your code here. 
+      <Paper>
+      // Your code here.
       // See https://github.com/brunetsimon/live-poll/issues/2
+      </Paper>
     );
   }
 }
