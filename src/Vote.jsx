@@ -21,7 +21,9 @@ class Vote extends Component {
     const { classes } = this.props;
     
     return(
-      // Code goes here
+      <div>
+        // code here. You can remove the <div> dans replace it with your own code
+      </div>
     );
   }
 }
