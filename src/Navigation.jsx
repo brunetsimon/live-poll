@@ -10,7 +10,7 @@ const Navigation = () =>
 // 3. An Admin button which links to /admin
 
 // Suggestion: Have a look here https://material-ui.com/demos/app-bar/ to find out how to use components like AppBar, Toolbar, Button, etc...
-
+<AppBar>
 // code goes here.
-
+</AppBar>
 export default Navigation;
