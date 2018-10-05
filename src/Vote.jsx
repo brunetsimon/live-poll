@@ -22,7 +22,7 @@ class Vote extends Component {
     
     return(
       <div>
-        // code here. You can remove the <div> dans replace it with your own code
+        // code here. You can remove the div dans replace it with your own code
       </div>
     );
   }
