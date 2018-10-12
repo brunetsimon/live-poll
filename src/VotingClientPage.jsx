@@ -8,10 +8,7 @@ class VotingClientPage extends Component {
   render() {
 
     return(
-      <Switch>
-        <Route exact path="/client" component={VotingClientSelector} />
-        <Route path="/client/:pollId" component={VotingClient} />
-      </Switch>
+      <div>{/*remove the div and replace with a Switch */}</div>;
     );
   }
 };
