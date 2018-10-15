@@ -8,7 +8,7 @@ class VotingClientPage extends Component {
   render() {
 
     return(
-      <div>remove the div and replace with a Switch</div>;
+      <div>remove the div and replace with a Switch</div>
     );
   }
 };
