@@ -27,7 +27,9 @@ jobs:
             yarn run firebase --version
       - run:
           name: Install Functions Packages
-          command: yarn install
+          command: |
+            cd functions
+            yarn install
       - run:
           name: Build
           command: yarn build
