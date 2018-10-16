@@ -7,7 +7,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:7.10
-    parallelism: 4
     steps:
       - checkout
       - restore_cache:
