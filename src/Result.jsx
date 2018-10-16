@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from 'react';
 import { withStyles, Paper, Icon, Typography } from 'material-ui';
 import ratingsConst from './contants';
