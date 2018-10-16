@@ -33,9 +33,7 @@ jobs:
           command: yarn build
       - run:
           name: Test
-          command: |
-            yarn lint
-            yarn test --forceExit
+          command: yarn test --forceExit
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
