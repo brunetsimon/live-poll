@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-          firebase --help
+            firebase --help
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
             fi
