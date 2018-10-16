@@ -1,4 +1,5 @@
-/* eslint-disable no-unused-vars react/jsx-no-comment-textnodes*/
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-comment-textnodes */ 
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button} from 'material-ui';
