@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom'
 import Navigation from './Navigation';
 import Main from './Main';
 import CcsBaseline from 'material-ui/CssBaseline';
@@ -17,9 +18,11 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.bodyContainer}>
-        <CcsBaseline />
-        <Navigation />
-        <Main />
+        <BrowserRouter>
+          <CcsBaseline />
+          <Navigation />
+          <Main />
+        </BrowserRouter>
       </div>
     );
   }
