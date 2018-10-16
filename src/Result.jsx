@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { withStyles, Paper, Icon, Typography } from 'material-ui';
 import ratingsConst from './contants';
