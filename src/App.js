@@ -18,9 +18,9 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.bodyContainer}>
-        <BrowserRouter>
-          <CcsBaseline />
-          <Navigation />
+         <CcsBaseline />
+         <Navigation />5
+         <BrowserRouter>
           <Main />
         </BrowserRouter>
       </div>
