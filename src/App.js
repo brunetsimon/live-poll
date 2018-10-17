@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className={classes.bodyContainer}>
          <CcsBaseline />
-         <Navigation />5
+         <Navigation />
          <BrowserRouter>
           <Main />
         </BrowserRouter>
