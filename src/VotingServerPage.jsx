@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import VotingServerSelector from './VotingServerSelector';
@@ -8,10 +9,7 @@ class VotingServerPage extends Component {
   render() {
 
     return(
-      <Switch>
-        <Route exact path="/server" component={VotingServerSelector} />
-        <Route path="/server/:pollId" component={VotingServer} />
-      </Switch>
+      <div>remove the div and replace with a Switch</div>
     );
   }
 };
