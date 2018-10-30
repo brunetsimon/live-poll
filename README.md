@@ -20,3 +20,16 @@ To save us lot of time we will also use a CSS library [material-ui](https://mate
 
 ## App structure
 ![App structure](https://preview.ibb.co/crrz2f/live-voting.jpg)
+
+## How to edit a file with my changes?
+
+1. Navigate to the file to edit and click on the pen on the top right.
+2. Edit your changes. 
+3. Under the file you change there is a form with the title "Commit changes". 
+4. Fill-in a title and a description of your changes. 
+5. Select "Create a new branch for this commit".
+6. Push Commit changes.
+7. This creates a branch which is independent of the main app.
+8. Wait for the test on CircleCI to pass.
+9. Contact someone to review your code
+10. You are done !
