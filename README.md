@@ -18,3 +18,5 @@ But to make it feel more like a “real app” (no page reload, …) we will be 
 To save us lot of time we will also use a CSS library [material-ui](https://material-ui.com/) which provides already made component to make our app look good.
 
 
+## App structure
+![App structure](https://preview.ibb.co/crrz2f/live-voting.jpg)
