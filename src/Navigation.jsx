@@ -128,7 +128,7 @@ function Navigation(props) {
 
   return (
     <div className={classes.container}>
-      <Link to="/client" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <Button
           variant="contained"
           color="primary"
@@ -137,7 +137,7 @@ function Navigation(props) {
           Homepage
         </Button>
       </Link>
-      <Link to="/admin" style={{ textDecoration: "none" }}>
+      <Link to="/client" style={{ textDecoration: "none" }}>
         <Button
           variant="contained"
           color="primary"
@@ -147,7 +147,7 @@ function Navigation(props) {
           Vote Selector
         </Button>
       </Link>
-      <Link to="/admin" style={{ textDecoration: "none" }}>
+      <Link to="/server" style={{ textDecoration: "none" }}>
         <Button
           variant="contained"
           color="primary"
