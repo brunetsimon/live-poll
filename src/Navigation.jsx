@@ -10,7 +10,7 @@ const Navigation = () =>
 // 1. A Client button which links to /client
 // 2. A Server button which links to /server
 // 3. An Admin button which links to /admin
-
+//Test
 // Suggestion: Have a look here https://material-ui.com/demos/app-bar/ to find out how to use components like AppBar, Toolbar, Button, etc...
 <AppBar>
 // code goes here.
