@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import VotingClientSelector from "./VotingClientSelector";
 import VotingClient from "./VotingClient";
+import VotingServerSelector from "./VotingServerSelector";
+import VotingServer from "./VotingServer";
 import Homepage from "./Homepage.jsx";
 import { Switch, Route } from "react-router-dom";
 
