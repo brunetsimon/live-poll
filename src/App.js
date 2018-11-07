@@ -19,8 +19,9 @@ class App extends Component {
     return (
       <div className={classes.bodyContainer}>
          <CcsBaseline />
-         <Navigation />
+         
          <BrowserRouter>
+          <Navigation />
           <Main />
         </BrowserRouter>
       </div>
