@@ -130,6 +130,7 @@ return (
 <div className={classes.container}>
 <Button
 to="/"
+  component={Link}
 variant="contained"
 color="primary"
 className={classNames(classes.margin, classes.client)}
@@ -137,6 +138,7 @@ className={classNames(classes.margin, classes.client)}
 Homepage
 </Button>
 <Button
+  component={Link}
 to="/client"
 variant="contained"
 color="primary"
@@ -146,6 +148,7 @@ className={classNames(classes.margin, classes.admin)}
 Vote Selector
 </Button>
 <Button
+  component={Link}
 to="/server"
 variant="contained"
 color="primary"
