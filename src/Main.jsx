@@ -12,9 +12,9 @@ class Main extends Component {
     return (
 <Switch>
   <Route exact path="/" component={Homepage}/>
-        <Route path="/client" component={VotingClientSelector}/>
+        <Route exact  path="/client" component={VotingClientSelector}/>
         <Route path="/client/:pollId" component={VotingClient}/>
-        <Route path="/server" component={VotingServerSelector}/>
+        <Route exact  path="/server" component={VotingServerSelector}/>
         <Route path="/server/:pollId" component={VotingServer}/>
 </Switch>
     );
