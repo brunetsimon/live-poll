@@ -21,7 +21,7 @@ class App extends Component {
          <CcsBaseline />
          
          <BrowserRouter>
-          <Navigation />
+          
           <Main />
         </BrowserRouter>
       </div>
