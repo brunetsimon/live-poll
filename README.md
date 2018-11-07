@@ -1,3 +1,6 @@
+## Useful links
+The app: https://votingapp-46f38.firebaseapp.com/
+
 ## What are we building?
 We are building an app where users can give feedback to a question and the aggregated result will be displayed on a graph.  
 
