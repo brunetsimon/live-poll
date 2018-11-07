@@ -35,15 +35,16 @@ class VotingClient extends Component {
   }
 
   handleRatingCallback(rating) {
-    
-    // Update the local variables rating and hasVoted. Use this.setState()
-    //here
-    
-    // Here is the reference to where the rating shall be saved on the server. 
-    let ref = "/polls/"+this.props.match.params.pollId+"/votes";
-    
-    // Use database.ref(ref).push() to sent the 'rating' to the server. It shall be saved under the key 'rating'
-    //here
+    this.setState({
+      hasVoted: rating != null,
+      rating: rating
+    });
+
+    if (this.state.hasVoted) {
+      // Here is the reference to where the rating shall be saved on the server.
+      let ref = "/polls/" + this.props.match.params.pollId + "/votes";
+      database.ref(ref).push(rating);
+    }
   }
   render() {
 
@@ -58,9 +59,11 @@ class VotingClient extends Component {
           <Typography variant="subheading">Poll ID = {this.props.match.params.pollId}</Typography>
         </div>
         <div className={classes.voteContainer}>
-          {
-            // Here you need to select the <Result> or <Vote> component. Don't forget to pass the properties. 
-          }
+          {this.state.hasVoted ? (
+            <Result>rating={this.state.rating}</Result>
+          ) : (
+            <Vote callbackVote={this.handleRatingCallback} />
+          )}
         </div>
       </div>
     );
