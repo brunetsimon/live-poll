@@ -41,7 +41,7 @@ gutterBottom
 Thank You For Your Vote !
 </Typography>
 <Typography variant="h5" component="h7">
-<img src={ratingsConst[this.props.rating].img} />
+<img src={ratingsConst[this.props.rating].img} alt="rating" />
 </Typography>
 </CardContent>
 </Card>
