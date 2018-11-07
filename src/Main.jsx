@@ -1,21 +1,21 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import VotingClient from './VotingClient';
-import VotingClientSelector from './VotingClientSelector';
-import VotingServer from './VotingServer';
-import VotingServerSelector from './VotingServerSelector';
-import AddPoll from './AddPoll';
+import React, { Component } from "react";
+import VotingClientSelector from "./VotingClientSelector";
+import VotingClient from "./VotingClient";
+import Homepage from "./Homepage.jsx";
+import { Switch, Route } from "react-router-dom";
 
-// The Main component renders one of the three provided
-// Routes (provided that one matches). Both the /roster
-// and /schedule routes will match any pathname that starts
-// with /roster or /schedule. The / route will only match
-// when the pathname is exactly the string "/"
-const Main = () => (
+class Main extends Component {
+  render() {
+    return (
+<Switch>
+  <Route exact path="/" component={Homepage}/>
+        <Route path="/client" component={VotingClientSelector}/>
+        <Route path="/client/:pollId" component={VotingClient}/>
+        <Route path="/server" component={VotingServerSelector}/>
+        <Route path="/server/:pollId" component={VotingServer}/>
+</Switch>
+    );
+  }
+}
 
-   <div>Your Switch and Routes here. Remove the div</div>
-
-)
-
-export default Main
+export default Main;
