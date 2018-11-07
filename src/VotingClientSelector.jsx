@@ -10,6 +10,8 @@ import {
   FormHelperText
 } from "material-ui";
 import database from "./database.js";
+import InputLabel from "@material-ui/core/InputLabel";
+import Icon from "@material-ui/core/Icon";
 
 const styles = {
   formContainer: {
@@ -44,6 +46,7 @@ class VotingClientSelector extends Component {
   handleInputChange(event) {
     //store pollId value in the local state. Google react + setState.
     // Also hide the error if there was one.
+    this.setState({ pollId: event.target.value, errorMsg: "" });
   }
 
   handleSubmit(event) {
@@ -58,9 +61,14 @@ class VotingClientSelector extends Component {
     // Check the database.
     database.ref(ref).once("value", snap => {
       if (snap.val() != null) {
+        this.props.history.push(`/client/${this.state.pollId}`);
         // snap (which contain our poll result exists. Let's navigate to our poll.)
         // code here.
       } else {
+        this.setState({
+          showError: true,
+          errorMsg: "No poll with this ID"
+        });
         // There isn't a poll with this id. Show an error message
         // code here.
       }
@@ -74,7 +82,31 @@ class VotingClientSelector extends Component {
           <Typography variant="headline" gutterBottom="true">
             Enter your poll number
           </Typography>
-          <form onSubmit={this.handleSubmit}>Code here!</form>
+          <form onSubmit={this.handleSubmit}>
+            <FormControl
+              className={classes.formControl}
+              error={this.state.errorMsg !== ""}
+              fullWidth
+            >
+              <InputLabel htmlFor="component-simple">Poll ID</InputLabel>
+              <Input
+                id="pollId"
+                value={this.state.pollId}
+                onChange={this.handleInputChange}
+              />
+              <FormHelperText id="name-error-text">
+                {this.state.errorMsg}
+              </FormHelperText>
+            </FormControl>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              className={classes.button}
+            >
+              <Icon className={classes.rightIcon}>send</Icon>
+            </Button>
+          </form>
         </Paper>
       </div>
     );
