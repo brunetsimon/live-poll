@@ -161,7 +161,7 @@ function Navigation(props) {
   );
 }
 
-CustomizedInputs.propTypes = {
+Navigation.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
