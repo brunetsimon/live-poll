@@ -131,7 +131,7 @@ return (
 <Button
 to="/"
   component={Link}
-variant="contained"
+variant="raised"
 color="primary"
 className={classNames(classes.margin, classes.client)}
 >
@@ -140,7 +140,7 @@ Homepage
 <Button
   component={Link}
 to="/client"
-variant="contained"
+variant="raised"
 color="primary"
 disableRipple
 className={classNames(classes.margin, classes.admin)}
@@ -150,7 +150,7 @@ Vote Selector
 <Button
   component={Link}
 to="/server"
-variant="contained"
+variant="raised"
 color="primary"
 disableRipple
 className={classNames(classes.margin, classes.server)}
