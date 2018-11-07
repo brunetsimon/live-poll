@@ -29,8 +29,8 @@ function Homepage(props) {
 
 
     
-    <Button to="/client" variant="contained" className={classes.button} color="primary">Start voting </Button>
-    <Button to="/server" variant="contained" className={classes.button}  color="primary">Display a voting graph</Button>
+    <Button component={Link} to="/client" variant="contained" className={classes.button} color="primary">Start voting </Button>
+    <Button component={Link} to="/server" variant="contained" className={classes.button}  color="primary">Display a voting graph</Button>
   </div>
   );
 };
