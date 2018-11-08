@@ -9,7 +9,10 @@ class VotingServerPage extends Component {
   render() {
 
     return(
-      <div>remove the div and replace with a Switch</div>
+      <Switch>
+        <Route exact path="/server" component={VotingServerSelector} />
+        <Route path="/server/:pollId" component={VotingServer} />
+      </Switch>
     );
   }
 };
