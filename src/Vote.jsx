@@ -18,25 +18,14 @@ fontSize: "120px",
 
 class Vote extends Component {
 render() {
-const { classes } = this.props;
+ const { classes } = this.props;
 
-return (
-<div> 
-<IconButton className={classes.iconButton} onclick="this.props.callbackVote.bind(null, 0)" aria-label="very_satisfied">
-<Icon className={classes.icon} >sentiment_very_satisfied</Icon>
-</IconButton> 
-<IconButton className={classes.iconButton} onclick="this.props.callbackVote.bind(null, 1)" aria-label="satisfied">
-<Icon className={classes.icon} >sentiment_satisfied</Icon>
-</IconButton> 
-<IconButton className={classes.iconButton} onclick="this.props.callbackVote.bind(null, 2)" aria-label="dissatisfied">
-<Icon className={classes.icon} >sentiment_dissatisfied</Icon>
-</IconButton> 
-<IconButton className={classes.iconButton} onclick="this.props.callbackVote.bind(null, 3)" aria-label="very_dissatisfied">
-<Icon className={classes.icon} >sentiment_very_dissatisfied</Icon>
-</IconButton> 
-</div>
-
-);
+    let listButtons = ratingsConst.map( rating => <IconButton className={classes.iconButton} color="primary" key={rating.id} onClick={this.props.callbackVote.bind(null, rating.id)}><Icon className={classes.icon}>{rating.icon}</Icon></IconButton>);
+    return(
+      <div>
+        {listButtons}
+      </div>
+    );
 }
 }
 export default withStyles(styles)(Vote);
