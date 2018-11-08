@@ -43,6 +43,8 @@ class AddPoll extends Component {
     database.ref(ref).push({
       '0' : 0,
     });
+    this.setState({pollId: ""});
+    this.props.history.push(`/`);
   }
   render() {
 
