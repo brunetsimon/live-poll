@@ -130,15 +130,17 @@ return (
 <div className={classes.container}>
 <Button
 to="/"
-variant="contained"
+  component={Link}
+variant="raised"
 color="primary"
 className={classNames(classes.margin, classes.client)}
 >
 Homepage
 </Button>
 <Button
+  component={Link}
 to="/client"
-variant="contained"
+variant="raised"
 color="primary"
 disableRipple
 className={classNames(classes.margin, classes.admin)}
@@ -146,8 +148,9 @@ className={classNames(classes.margin, classes.admin)}
 Vote Selector
 </Button>
 <Button
+  component={Link}
 to="/server"
-variant="contained"
+variant="raised"
 color="primary"
 disableRipple
 className={classNames(classes.margin, classes.server)}
