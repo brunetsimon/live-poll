@@ -64,7 +64,7 @@ class VotingServer extends Component {
           <Typography> <center> Current Poll ID: {this.props.match.params.pollId}</center> </Typography>
         </div>
         <div className={classes.voteContainer}>
-          <BarChart data={[["Love"	, this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
+          <BarChart download={this.props.match.params.pollId} data={[["Love"	, this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
         </div>
       </div>
     );
