@@ -5,7 +5,7 @@ import VotingClient from "./VotingClient";
 import VotingServerSelector from "./VotingServerSelector";
 import VotingServer from "./VotingServer";
 import Homepage from "./Homepage.jsx";
-import AdminPage from "./AdminPage";
+import AddPoll from "./AddPoll";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -18,7 +18,7 @@ class Main extends Component {
         <Route path="/client/:pollId" component={VotingClient}/>
         <Route exact  path="/server" component={VotingServerSelector}/>
         <Route path="/server/:pollId" component={VotingServer}/>
-        <Route path="/admin" component={AdminPage}/>
+        <Route path="/admin" component={AddPoll}/>
 </Switch>
     );
   }
