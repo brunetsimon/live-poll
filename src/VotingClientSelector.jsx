@@ -56,10 +56,10 @@ class VotingClientSelector extends Component {
     let ref = "/polls/" + this.state.pollId;
 
     //Hide possible previous error.
-    //here
+    this.setState({errorMsg: ""})
 
     // Check the database.
-    database.ref(ref).once("value", snap => {
+    database.ref(ref).once("value", (snap) => {
       if (snap.val() != null) {
         this.props.history.push(`/client/${this.state.pollId}`);
         // snap (which contain our poll result exists. Let's navigate to our poll.)
@@ -84,11 +84,9 @@ class VotingClientSelector extends Component {
           </Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl
-              className={classes.formControl}
               error={this.state.errorMsg !== ""}
               fullWidth
             >
-              <InputLabel htmlFor="component-simple">Poll ID</InputLabel>
               <Input
                 id="pollId"
                 value={this.state.pollId}
@@ -99,12 +97,12 @@ class VotingClientSelector extends Component {
               </FormHelperText>
             </FormControl>
             <Button
-              variant="contained"
+              variant="raised"
               color="primary"
               type="submit"
               className={classes.button}
             >
-              <Icon className={classes.rightIcon}>send</Icon>
+              Go!
             </Button>
           </form>
         </Paper>
