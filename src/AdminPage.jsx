@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Addpoll from './AddPoll';
+import AddPoll from './AddPoll';
 
 
 class AdminPage extends Component {
