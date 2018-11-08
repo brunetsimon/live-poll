@@ -20,8 +20,8 @@ function Homepage(props) {
     <p> &nbsp; </p>
       <p> &nbsp; </p>
       <Typography component="h1" variant="h3" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
-    <Button component={Link} to="/client" variant="contained" className={classes.button} color="primary">Start voting </Button>
-    <Button component={Link} to="/server" variant="contained" className={classes.button}  color="primary">Display a voting graph</Button>
+    <Button component={Link} to="/client" variant="raised" className={classes.button} color="primary">Start voting </Button>
+    <Button component={Link} to="/server" variant="raised" className={classes.button}  color="primary">Display a voting graph</Button>
   </div>
   );
 };
