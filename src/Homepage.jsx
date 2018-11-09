@@ -7,6 +7,7 @@ const styles = {
   title: {
     marginTop: "15vh",
     marginBottom: "10vh",
+    fontSize: "1.7em"
   },
   button: {
     display: "block",
