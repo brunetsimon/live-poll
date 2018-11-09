@@ -11,6 +11,7 @@ const styles = {
     display: "flex",
     flexFlow: "column",
     height: "100%",
+    minHeight: "100vh",
   }
 }
 
