@@ -2,29 +2,25 @@ const ratingsConst = [
 {
 text: "Love",
 icon: "sentiment_very_satisfied",
-img:
-"http://teamplace.volvo.com/sites/Emobility/Shared%20Documents/01_Program/01_Planning/PI10%20w46-w05/0.jpg",
+img: "https://ibb.co/kbUVXq",
 id: 0
 },
 {
 text: "Medium high",
-img:
-"http://teamplace.volvo.com/sites/Emobility/Shared%20Documents/01_Program/01_Planning/PI10%20w46-w05/1.jpg",
+img: "https://ibb.co/nRAb5A",
 icon: "sentiment_satisfied",
 id: 1
 },
 {
 text: "Medium low",
-img:
-"http://teamplace.volvo.com/sites/Emobility/Shared%20Documents/01_Program/01_Planning/PI10%20w46-w05/2.jpg",
+img: "https://ibb.co/e6FhdV",
 icon: "sentiment_dissatisfied",
 id: 2
 },
 {
 text: "Hate",
 icon: "sentiment_very_dissatisfied",
-img:
-"http://teamplace.volvo.com/sites/Emobility/Shared%20Documents/01_Program/01_Planning/PI10%20w46-w05/4.jpg",
+img: "https://ibb.co/d5HHCq",
 id: 3
 }
 ];
