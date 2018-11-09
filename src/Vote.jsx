@@ -6,12 +6,12 @@ import ratingsConst from "./contants";
 
 const styles = {
 iconButton: {
-display: "inline-block",
+display: "block",
 height: "16vh",
 width: "16vh"
 },
 icon: {
-fontSize: "120px",
+fontSize: "80x",
 //background: "yellow"
 }
 };
