@@ -20,7 +20,7 @@ class Vote extends Component {
 render() {
  const { classes } = this.props;
 
-    let listButtons = ratingsConst.map( rating => <IconButton className={classes.iconButton} color="primary" key={rating.id} onClick={this.props.callbackVote.bind(null, rating.id)}><Icon className={classes.icon}>{rating.icon}</Icon></IconButton>);
+    let listButtons = ratingsConst.map( rating => <IconButton className={classes.iconButton} key={rating.id} onClick={this.props.callbackVote.bind(null, rating.id)}><Icon className={classes.icon}>{rating.icon}</Icon></IconButton>);
     return(
       <div>
         {listButtons}
