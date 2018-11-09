@@ -11,7 +11,7 @@ height: "16vh",
 width: "16vh"
 },
 icon: {
-fontSize: "80x",
+fontSize: "80px",
 //background: "yellow"
 }
 };
