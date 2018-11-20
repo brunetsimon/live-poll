@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from "react";
-import {
-  Input,
-  Paper,
-  Button,
-  withStyles,
-  Typography,
-  FormControl,
-  FormHelperText
-} from "material-ui";
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import database from "./database.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
@@ -79,7 +77,7 @@ class VotingClientSelector extends Component {
     return (
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom="true">
+          <Typography variant="headline" gutterBottom>
             Enter your poll number
           </Typography>
           <form onSubmit={this.handleSubmit}>
@@ -97,7 +95,7 @@ class VotingClientSelector extends Component {
               </FormHelperText>
             </FormControl>
             <Button
-              variant="raised"
+              variant="contained"
               color="primary"
               type="submit"
               className={classes.button}

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import Navigation from './Navigation';
 import Main from './Main';
-import CcsBaseline from 'material-ui/CssBaseline';
-import { withStyles } from 'material-ui';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   bodyContainer: {
@@ -20,7 +20,7 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.bodyContainer}>
-         <CcsBaseline />
+         <CssBaseline />
       {/* <Navigation /> */}
          <BrowserRouter>    
           <Main />

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Input, Paper, Button, withStyles, Typography, FormControl, FormHelperText } from 'material-ui';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 import database from './database.js';
 
 const styles = {
@@ -57,13 +63,13 @@ class VotingServerSelector extends Component {
     return(
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom="true" >Enter your poll number</Typography>
+          <Typography variant="headline" gutterBottom>Enter your poll number</Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl error={this.state.errorMsg !== ""} fullWidth>
               <Input id="pollId" value={this.state.pollId} onChange={this.handleInputChange} />
               <FormHelperText id="name-error-text">{this.state.errorMsg}</FormHelperText>
             </FormControl>
-            <Button type='submit' color="primary" variant="raised" className={classes.button} fullWidth>
+            <Button type='submit' color="primary" variant="contained" className={classes.button} fullWidth>
               Go!
             </Button>
           </form>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Vote from './Vote';
 import Result from './Result';
 import database from './database.js';
-import { Typography, withStyles } from 'material-ui';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   voteContainer: {
@@ -33,12 +34,13 @@ class VotingClient extends Component {
     this.handleRatingCallback = this.handleRatingCallback.bind(this);
   }
 
-  handleRatingCallback(rating) {
-    console.log(rating);
-    this.setState({hadVoted: true, rating: rating});
+  handleRatingCallback(result) {
+    console.log(result);
+    this.setState({hadVoted: true, rating: result.rating, message: result.message});
     let ref = "/polls/"+this.props.match.params.pollId+"/votes";
     database.ref(ref).push({
-      'rating' : rating,
+      'rating' : result.rating,
+      'message' : result.message,
     });
   }
   render() {
@@ -48,12 +50,12 @@ class VotingClient extends Component {
     return (
       <div className={classes.contentContainer}>
         <div className={classes.header}>
-          <Typography variant="headline">Let's vote!</Typography>
-          <Typography variant="subheading">Poll ID = {this.props.match.params.pollId}</Typography>
+          <Typography variant="h4">Let's vote!</Typography>
+          <Typography variant="subtitle2">Poll ID = {this.props.match.params.pollId}</Typography>
         </div>
         <div className={classes.voteContainer}>
           {
-          this.state.hadVoted === true ? <Result rating={this.state.rating}/> : <Vote callbackVote={this.handleRatingCallback}/> 
+          this.state.hadVoted === true ? <Result rating={this.state.rating}/> : <Vote callbackVote={this.handleRatingCallback} /> 
           }
         </div>
       </div>

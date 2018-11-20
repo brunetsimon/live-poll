@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { ListItem, List, ListItemText, ListItemSecondaryAction, IconButton, Typography, ListSubheader, withStyles } from 'material-ui';
+import Snackbar from '@material-ui/core/Snackbar';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import database from './database.js';
 import AlertDelete from './AlertDelete';
@@ -20,9 +28,11 @@ class ListPoll extends Component {
       polls: [],
       pollToRemove: null,
       open: false,
+      showSnackbar: false,
     };
 
     this.handleOnClose = this.handleOnClose.bind(this);
+    this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
 
   }
 
@@ -39,7 +49,7 @@ class ListPoll extends Component {
 
     pollRef.on('child_removed', (data) => {
       this.setState((state) => ({polls: state.polls.filter((item) => item.pollId !== data.key)}));
-
+      this.setState({showSnackbar: true});
     });
   }
 
@@ -65,6 +75,10 @@ class ListPoll extends Component {
     this.setState({pollToRemove: null, open: false});
   }
 
+  handleSnackbarClose() {
+    this.setState({showSnackbar: false});
+  }
+
   render() {
 
     const { classes } = this.props;
@@ -87,6 +101,19 @@ class ListPoll extends Component {
           {listPolls}
         </List>
         <AlertDelete open={this.state.open} onClose={this.handleOnClose} pollId={this.state.pollToRemove}/>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={this.state.showSnackbar}
+          autoHideDuration={6000}
+          onClose={this.handleSnackbarClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Poll deleted</span>}
+        />
       </div>
     );
   }

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Paper, Button, withStyles, Typography, TextField, FormControl, FormHelperText } from 'material-ui';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import database from './database.js';
 
 const styles = {
@@ -9,7 +15,7 @@ const styles = {
   contentContainer: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     flex: 1,
     flexFlow: "column",
   },
@@ -56,14 +62,17 @@ class AddPoll extends Component {
     let ref = "/polls/"+this.state.pollId;
     database.ref(ref).set({
       'pollName' : this.state.pollName,
+      'dateCreated': Date.now(),
+      'voteOpen': true,
     });
     ref = "/polls/"+this.state.pollId+"/ratingCount";
     database.ref(ref).push({
       '0' : 0,
     });
     this.setState({pollId: ""});
-    this.props.history.push(`/`);
+    this.props.history.push(`/admin/list`);
   }
+
   render() {
 
     const { classes } = this.props;

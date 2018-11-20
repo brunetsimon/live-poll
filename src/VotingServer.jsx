@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import database from "./database.js";
-import { Typography, withStyles } from "material-ui";
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import ReactChartkick, { BarChart } from "react-chartkick";
 import Chart from "chart.js";
 
