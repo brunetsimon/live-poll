@@ -45,14 +45,18 @@ class VotingServer extends Component {
 
     // ref is the path to the total count.
     let ref = "/polls/" + this.props.match.params.pollId + "/ratingCount";
-    var countRef = database.ref(ref);
-    countRef.on('value', (snap) =>
+    this.countRef = database.ref(ref);
+    this.countRef.on('value', (snap) =>
     {
       this.setState({"countArray": snap.val()});
     });
 
     // Here we need to put the function that will listen to database updates in the "ref" location
     // and we need to store that value locally in "countArray"
+  }
+  
+  componentWillUnmount() {
+   this.countRef.off(); 
   }
 
   render() {
