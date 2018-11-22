@@ -33,6 +33,21 @@ class VotingClient extends Component {
 
     this.handleRatingCallback = this.handleRatingCallback.bind(this);
   }
+  
+  componentDidMount() {
+    if (localStorage.hasOwnProperty(this.props.match.params.pollId)) {
+      let oldState = localStorage.getItem(this.props.match.params.pollId);
+      try {
+          value = JSON.parse(value);
+          console.log(value);
+          //this.setState({ [key]: value });
+        } catch (e) {
+          // handle empty string
+         // this.setState({ [key]: value });
+          console.log("parsing error");
+        }
+    }
+  }
 
   handleRatingCallback(result) {
     console.log(result);
@@ -42,6 +57,7 @@ class VotingClient extends Component {
       'rating' : result.rating,
       'message' : result.message,
     });
+    localStorage.setItem(this.props.match.params.pollId, JSON.stringify({hadVoted: true, rating: result.rating, message: result.message}));
   }
   render() {
 
