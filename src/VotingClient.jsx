@@ -38,7 +38,8 @@ class VotingClient extends Component {
     if (localStorage.hasOwnProperty(this.props.match.params.pollId)) {
       let oldState = localStorage.getItem(this.props.match.params.pollId);
       try {
-          value = JSON.parse(oldState);
+          parsedOldState = JSON.parse(oldState);
+          console.log(parsedOldState);
           console.log(oldState);
           //this.setState({ [key]: value });
         } catch (e) {
