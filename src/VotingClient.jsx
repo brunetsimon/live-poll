@@ -35,16 +35,18 @@ class VotingClient extends Component {
   }
   
   componentDidMount() {
+    // Check in the localStorage if a vote is already registered for this poll
     if (localStorage.hasOwnProperty(this.props.match.params.pollId)) {
       let oldState = localStorage.getItem(this.props.match.params.pollId);
       try {
           let parsedOldState = JSON.parse(oldState);
           console.log(parsedOldState);
-          console.log(oldState);
-          //this.setState({ [key]: value });
+          for (let key in parsedOldState) {
+            this.setState({ [key]: parsedOldState[key] });           
+          }
+          
         } catch (e) {
           // handle empty string
-         // this.setState({ [key]: value });
           console.log("parsing error");
         }
     }

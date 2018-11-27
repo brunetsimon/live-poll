@@ -53,10 +53,8 @@ class Vote extends Component {
   handleMessageOnChange(event) {
     this.setState({message: event.target.value});
   }
-  handleOnSubmit() {
-    console.log("handleOnSubmit");    
+  handleOnSubmit() {   
     this.props.callbackVote({rating: this.state.selectedRating, message: this.state.message});
-    //this.props.callbackVote.bind(null, "10");
   }
 render() {
  const { classes } = this.props;
