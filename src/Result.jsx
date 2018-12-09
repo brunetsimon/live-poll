@@ -21,7 +21,6 @@ const styles = {
 class Result extends Component {
   render() {
     const { classes } = this.props;
-    console.log(this.props.rating);
     return (
       <div>
         <Card className={classes.card}>
