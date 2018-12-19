@@ -75,7 +75,7 @@ render() {
           margin="normal"
           onChange={this.handleMessageOnChange}
         />
-        <Typography variant="caption" className={classes.note}>Note: The comment is sent anonymaly to the Release Train Engineer</Typography>
+        <Typography variant="caption" className={classes.note}>Note: Your comment is sent anonymously but visible to all users</Typography>
         <Button variant="contained" color="primary" onClick={this.handleOnSubmit} fullWidth>
           Submit
         </Button>
