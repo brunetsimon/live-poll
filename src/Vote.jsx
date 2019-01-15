@@ -22,6 +22,7 @@ flexContainer: {
   display: "flex",
   justifyContent: "space-between",
   marginBottom: "10vh",
+  minHeight: "60px",
 },
 pageContainer: {
   width: "90%",
