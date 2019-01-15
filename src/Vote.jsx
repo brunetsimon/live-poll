@@ -21,8 +21,8 @@ icon: {
 flexContainer: {
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "10vh",
-  minHeight: "60px",
+  marginBottom: "7vh",
+  minHeight: "70px",
 },
 pageContainer: {
   width: "90%",
