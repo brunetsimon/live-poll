@@ -13,7 +13,8 @@ const styles = {
 iconButton: {
   display: "inline-block",
   height: "10vh",
-  width: "10vh"
+  width: "10vh",
+  minHeight:"85px",
 },
 icon: {
   fontSize: "60px",
@@ -21,7 +22,7 @@ icon: {
 flexContainer: {
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "7vh",
+  marginBottom: "2vh",
   minHeight: "70px",
 },
 pageContainer: {
