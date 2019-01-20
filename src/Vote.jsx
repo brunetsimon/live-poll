@@ -13,7 +13,8 @@ const styles = {
 iconButton: {
   display: "inline-block",
   height: "10vh",
-  width: "10vh"
+  width: "10vh",
+  minHeight:"85px",
 },
 icon: {
   fontSize: "60px",
@@ -21,7 +22,8 @@ icon: {
 flexContainer: {
   display: "flex",
   justifyContent: "space-between",
-  marginBottom: "10vh",
+  marginBottom: "2vh",
+  minHeight: "70px",
 },
 pageContainer: {
   width: "90%",
@@ -75,7 +77,7 @@ render() {
           margin="normal"
           onChange={this.handleMessageOnChange}
         />
-        <Typography variant="caption" className={classes.note}>Note: The comment is sent anonymaly to the Release Train Engineer</Typography>
+        <Typography variant="caption" className={classes.note}>Note: Your comment is sent anonymously but visible to all users</Typography>
         <Button variant="contained" color="primary" onClick={this.handleOnSubmit} fullWidth>
           Submit
         </Button>
