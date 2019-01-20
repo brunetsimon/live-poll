@@ -32,9 +32,9 @@ jobs:
       - run:
           name: Build
           command: yarn build
-      - run:
-          name: Test
-          command: yarn test --forceExit
+      # - run:
+      #     name: Test
+      #     command: yarn test --forceExit
       - save_cache:
           name: Save node_modules cache
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
