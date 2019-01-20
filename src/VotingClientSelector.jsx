@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import database from "./database.js";
+import { database } from "./database.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
 

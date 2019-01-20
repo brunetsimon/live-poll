@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import database from './database.js';
+import { database } from './database.js';
 
 const styles = {
   formContainer: {
@@ -90,7 +90,7 @@ class AddPoll extends Component {
             <FormControl fullWidth>
               <TextField label="Name" id="pollName" value={this.state.pollName} onChange={this.handleNameChange} margin="normal"/>
             </FormControl>
-            <Button type='submit' color="primary" variant="raised" className={classes.button} fullWidth>
+            <Button type='submit' color="primary" variant="contained" className={classes.button} fullWidth>
               Create!
             </Button>
           </form>

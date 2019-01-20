@@ -9,13 +9,14 @@ import Typography from '@material-ui/core/Typography';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import database from './database.js';
+import { database } from './database.js';
 import AlertDelete from './AlertDelete';
+import { Link } from "react-router-dom";
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 const styles = {
-  contentContainer: {
-    //padding: "2rem",
-  }
+
 }
 
 class ListPoll extends Component {
@@ -96,8 +97,12 @@ class ListPoll extends Component {
       
     return(
       <div className={classes.contentContainer}>
-        <Typography></Typography>
-        <List subheader={<ListSubheader component="div">List of all polls</ListSubheader>}>
+        <Typography variant="h2" gutterBottom>Admin Dashboard</Typography>
+        <Button variant="contained" color="secondary" aria-label="Add" component={Link} to="/admin/add">
+          Add a poll
+          <AddIcon />
+        </Button>
+        <List subheader={<ListSubheader component="div">List of all polls:</ListSubheader>}>
           {listPolls}
         </List>
         <AlertDelete open={this.state.open} onClose={this.handleOnClose} pollId={this.state.pollToRemove}/>

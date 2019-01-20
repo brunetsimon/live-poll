@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import database from './database.js';
+import { database } from './database.js';
 
 const styles = {
   formContainer: {

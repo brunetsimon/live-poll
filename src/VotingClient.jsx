@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Vote from './Vote';
 import Result from './Result';
-import database from './database.js';
+import { database } from './database.js';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
