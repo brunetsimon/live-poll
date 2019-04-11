@@ -5,8 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
-    "chart.js": "^2.7.2",
-    "firebase": "^5.5.8",
+    "chart.js": "^2.8.0",
+    "firebase": "^5.9.3",
     "npm": "^6.4.1",
     "react": "^16.6.3",
     "react-chartkick": "^0.3.0",
