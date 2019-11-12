@@ -101,9 +101,11 @@ app.get('/api/users', async (req, res) => {
   try {
     let usersInfo = [];
     admin.auth().listUsers().then((userRecords) => {
-      userRecords.users.forEach((user) => {
+      return userRecords.users.forEach((user) => {
         usersInfo.push({"email": user.email});
       })
+    }).catch((error) => {
+      console.log(error);
     });
 
     res.status(200).json(usersInfo);
