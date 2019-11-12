@@ -32,6 +32,11 @@ jobs:
       - run:
           name: Build
           command: yarn build
+      - run:
+          name: Create serviceAccountKey.json from env variable
+          command: |
+            cd functions
+            echo $SERVICE_KEY > serviceAccountKey.json
       # - run:
       #     name: Test
       #     command: yarn test --forceExit
