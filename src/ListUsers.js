@@ -10,6 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { database } from './database.js';
+import { auth } from "./database.js";
 import AlertDelete from './AlertDelete';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
@@ -40,7 +41,7 @@ const styles = {
   },
 }
 
-class ListPoll extends Component {
+class ListUsers extends Component {
 
 
   constructor(props) {
@@ -48,6 +49,7 @@ class ListPoll extends Component {
 
     this.state = {
       polls: [],
+      users: [],
       pollToRemove: null,
       open: false,
       showSnackbar: false,
@@ -59,7 +61,11 @@ class ListPoll extends Component {
   }
 
   componentDidMount() {
-    let pollRef = database.ref("/polls/");
+
+
+    this.listAllUsers();
+
+    /* let pollRef = database.ref("/polls/");
 
     pollRef.on('child_added', (data) => {
       this.setState((state) => ({ polls: [...state.polls, { pollId: data.key, pollName: data.val().pollName }] }));
@@ -72,7 +78,7 @@ class ListPoll extends Component {
     pollRef.on('child_removed', (data) => {
       this.setState((state) => ({ polls: state.polls.filter((item) => item.pollId !== data.key) }));
       this.setState({ showSnackbar: true });
-    });
+    }); */
   }
 
   handlePollClick = pollId => () => {
@@ -101,6 +107,63 @@ class ListPoll extends Component {
     this.setState({ showSnackbar: false });
   }
 
+  listAllUsers() {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to api/users ith ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req);
+      };
+      req.onerror = function() {
+        console.log("error in listAllUsers");
+        
+      };
+      req.open('GET', 'api/users', true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.send();
+    });
+  }
+  /* authenticatedRequest(method, url, body) {
+    if (!auth.currentUser) {
+      throw new Error('Not authenticated. Make sure you\'re signed in!');
+    }
+  
+    // Get the Firebase auth token to authenticate the request
+    return auth.currentUser.getIdToken().then(function(token) {
+      var request = {
+        method: method,
+        url: url,
+        dataType: 'json',
+        beforeSend: function(xhr) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+      };
+  
+      if (method === 'POST') {
+        request.contentType = 'application/json';
+        request.data = JSON.stringify(body);
+      }
+  
+      console.log('Making authenticated request:', method, url);
+      return $.ajax(request).catch(function() {
+        throw new Error('Request error: ' + method + ' ' + url);
+      });
+    });
+  }; */
+
+  /* listMessages() {
+    var url = '/api/messages';
+    this.authenticatedRequest('GET', url).then((response) => {
+      var elements = response.map((message) => {
+        console.log(message);
+        
+      });
+
+    }).catch(function(error) {
+      console.log('Error listing messages.');
+      throw error;
+    });
+  }; */
+  
+
   render() {
 
     const { classes } = this.props;
@@ -122,12 +185,8 @@ class ListPoll extends Component {
           <ArrowBackIcon />
         </IconButton>
         <div className={classes.clearfix}></div>
-        <Typography className={classes.title} component="h1" variant="h4" gutterBottom>List all polls</Typography>
-        <Button variant="contained" color="secondary" aria-label="Add" component={Link} to="/admin/add">
-          Add a poll
-          <AddIcon />
-        </Button>
-        <List subheader={<ListSubheader component="div">List of all polls:</ListSubheader>}>
+        <Typography className={classes.title} component="h1" variant="h4" gutterBottom>List all users</Typography>
+        <List subheader={<ListSubheader component="div">List of all users:</ListSubheader>}>
           {listPolls}
         </List>
         <AlertDelete open={this.state.open} onClose={this.handleOnClose} pollId={this.state.pollToRemove} />
@@ -149,4 +208,4 @@ class ListPoll extends Component {
   }
 };
 
-export default withStyles(styles)(ListPoll);
+export default withStyles(styles)(ListUsers);

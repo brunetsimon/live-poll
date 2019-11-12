@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /functions/node_modules
+/functions/serviceAccountKey.json
 
 # testing
 /coverage

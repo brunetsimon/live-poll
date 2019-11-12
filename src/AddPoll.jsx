@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { database } from './database.js';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const styles = {
   formContainer: {
@@ -18,11 +20,33 @@ const styles = {
     // alignItems: "center",
     flex: 1,
     flexFlow: "column",
+    padding: "20px"
+
   },
   button: {
     display: "block",
     marginTop: "10px",
-  }
+  },
+  container: {
+    width: "100vw",
+    maxWidth: "600px",
+    padding: "10px",
+    textAlign: "center",
+    margin: "0 auto"
+  },
+  back: {
+    float: "left"
+  },
+  title: {
+    marginTop: "20px",
+    marginBottom: "10vh",
+    fontSize: "1.7em"
+  },
+  clearfix: {
+    content: "",
+    clear: "both",
+    display: "table",
+  },
 }
 
 class AddPoll extends Component {
@@ -43,52 +67,56 @@ class AddPoll extends Component {
   }
 
   handleIdChange(event) {
-    this.setState({pollId: event.target.value});
+    this.setState({ pollId: event.target.value });
   }
   handleNameChange(event) {
-    this.setState({pollName: event.target.value});
+    this.setState({ pollName: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if(this.state.pollId === "" || this.state.pollName === "") {
-     this.setState({errorMsg: "ID and Name can't be empty"}); 
-     return;
+    if (this.state.pollId === "" || this.state.pollName === "") {
+      this.setState({ errorMsg: "ID and Name can't be empty" });
+      return;
     };
 
-    this.setState({errorMsg: ""});
-    
+    this.setState({ errorMsg: "" });
+
     // Order is important since set() override everything
-    let ref = "/polls/"+this.state.pollId;
+    let ref = "/polls/" + this.state.pollId;
     database.ref(ref).set({
-      'pollName' : this.state.pollName,
+      'pollName': this.state.pollName,
       'dateCreated': Date.now(),
       'voteOpen': true,
     });
-    ref = "/polls/"+this.state.pollId+"/ratingCount";
+    ref = "/polls/" + this.state.pollId + "/ratingCount";
     database.ref(ref).push({
-      '0' : 0,
+      '0': 0,
     });
-    this.setState({pollId: ""});
+    this.setState({ pollId: "" });
     this.props.history.push(`/admin/list`);
   }
 
   render() {
 
     const { classes } = this.props;
-    return(
-      <div className={classes.contentContainer}>
+    return (
+      <div className={classes.container}>
+        <IconButton className={classes.back} aria-label="Back" onClick={this.props.history.goBack}>
+          <ArrowBackIcon />
+        </IconButton>
+        <div className={classes.clearfix}></div>
+        <Typography className={classes.title} component="h1" variant="h4" gutterBottom>Create a new poll</Typography>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom >Create a new poll</Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl error={this.state.errorMsg !== ""} fullWidth>
-              <TextField label="Id" id="pollId" value={this.state.pollId} onChange={this.handleIdChange} margin="normal"/>
+              <TextField label="Id" id="pollId" value={this.state.pollId} onChange={this.handleIdChange} margin="normal" />
               <FormHelperText id="name-error-text">
                 {this.state.errorMsg}
               </FormHelperText>
             </FormControl>
             <FormControl fullWidth>
-              <TextField label="Name" id="pollName" value={this.state.pollName} onChange={this.handleNameChange} margin="normal"/>
+              <TextField label="Name" id="pollName" value={this.state.pollName} onChange={this.handleNameChange} margin="normal" />
             </FormControl>
             <Button type='submit' color="primary" variant="contained" className={classes.button} fullWidth>
               Create!

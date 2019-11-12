@@ -17,7 +17,15 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-admin.initializeApp();
+var serviceAccount = require("./serviceAccountKey.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://votingapp-46f38.firebaseio.com"
+});
+const express = require('express');
+const app = express();
+
+
 
 // Keeps track of the length of the 'likes' child list in a separate property.
 exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId}').onWrite(
@@ -61,15 +69,48 @@ exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId
       }).then(() => {
         return console.log('Counter updated.');
       });
-    });
+});
 
-// If the number of likes gets deleted, recount the number of likes
-// exports.recountlikes = functions.database.ref('/posts/{postid}/likes_count').onDelete((snap) => {
-//   const counterRef = snap.ref;
-//   const collectionRef = counterRef.parent.child('likes');
+// Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
+// The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
+// `Authorization: Bearer <Firebase ID Token>`.
+// when decoded successfully, the ID Token content will be added as `req.user`.
+const authenticate = async (req, res, next) => {
+  if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
+    res.status(403).send('Unauthorized');
+    return;
+  }
+  const idToken = req.headers.authorization.split('Bearer ')[1];
+  try {
+    const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+    req.user = decodedIdToken;
+    next();
+    return;
+  } catch(e) {
+    res.status(403).send('Unauthorized');
+    return;
+  }
+};
 
-//   // Return the promise from counterRef.set() so our function
-//   // waits for this async event to complete before it exits.
-//   return collectionRef.once('value')
-//       .then((messagesData) => counterRef.set(messagesData.numChildren()));
-// });
+app.use(authenticate); 
+
+// GET /api/users
+// Get all users
+app.get('/api/users', async (req, res) => {
+
+  try {
+    let usersInfo = [];
+    admin.auth().listUsers().then((userRecords) => {
+      userRecords.users.forEach((user) => {
+        usersInfo.push(email: user.email);
+      }
+    );
+
+    res.status(200).json(usersInfo);
+  } catch(error) {
+    console.log('Error getting all users', error.message);
+    res.sendStatus(500);
+  }
+});
+
+exports.api = functions.https.onRequest(app);
