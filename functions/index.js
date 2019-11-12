@@ -102,9 +102,9 @@ app.get('/api/users', async (req, res) => {
     let usersInfo = [];
     admin.auth().listUsers().then((userRecords) => {
       userRecords.users.forEach((user) => {
-        usersInfo.push(email: user.email);
-      }
-    );
+        usersInfo.push({"email": user.email});
+      })
+    });
 
     res.status(200).json(usersInfo);
   } catch(error) {

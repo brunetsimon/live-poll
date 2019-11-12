@@ -10,9 +10,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { database } from './database.js';
-import { auth } from "./database.js";
+// import { auth } from "./database.js";
 import AlertDelete from './AlertDelete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import axios from 'axios';
 
 
 const styles = {
@@ -105,10 +106,22 @@ class ListUsers extends Component {
   }
 
   listAllUsers() {
+    axios.get('/api/users').then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    }).finally(function() {
+      console.log("finally");
+      
+    });
+      
+  }
+ /*  listAllUsers() {
     auth.currentUser.getIdToken().then(function(token) {
       console.log('Sending request to api/users ith ID token in Authorization header.');
       var req = new XMLHttpRequest();
       req.onload = function() {
+        console.log("Message" + req.responseText);
         console.log(req);
       };
       req.onerror = function() {
@@ -119,7 +132,7 @@ class ListUsers extends Component {
       req.setRequestHeader('Authorization', 'Bearer ' + token);
       req.send();
     });
-  }
+  } */
   /* authenticatedRequest(method, url, body) {
     if (!auth.currentUser) {
       throw new Error('Not authenticated. Make sure you\'re signed in!');
