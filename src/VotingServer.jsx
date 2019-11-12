@@ -7,6 +7,8 @@ import Grow from '@material-ui/core/Grow';
 import Switch from '@material-ui/core/Switch';
 import ReactChartkick, { BarChart } from "react-chartkick";
 import Chart from "chart.js";
+import { auth } from "./database.js";
+
 
 ReactChartkick.addAdapter(Chart);
 
@@ -18,7 +20,8 @@ const styles = {
     flex: 1,
     flexFlow: "column",
     maxWidth: "900px",
-    margin: "0 auto"
+    margin: "0 auto",
+
   },
   msgContainer: {
     paddingTop: "50px",
@@ -27,7 +30,11 @@ const styles = {
     margin: "0 auto"
   },
   contentContainer: {
-    height: "100%"
+    height: "100%",
+    padding: "10px"
+  },
+  total: {
+    textAlign: "center"
   },
   header: {
     textAlign: "center",
@@ -46,8 +53,8 @@ class VotingServer extends Component {
       countArray: [],
       messageArray: [],
       showComments: false,
-      };
-    
+    };
+
     this.handleSwitch = this.handleSwitch.bind(this);
   }
 
@@ -59,42 +66,62 @@ class VotingServer extends Component {
 
     let ref = "/polls/" + this.props.match.params.pollId + "/ratingCount";
     this.countRef = database.ref(ref);
-    this.countRef.on('value', (snap) =>
-    {
-      this.setState({"countArray": snap.val()});
+    this.countRef.on('value', (snap) => {
+      this.setState({ "countArray": snap.val() });
     });
 
-    let refMessage = "/polls/" + this.props.match.params.pollId + "/votes";
-    this.messageRef = database.ref(refMessage);
-    this.messageRef.on('child_added', (data) =>
-    {      
-      if (data.val().message !== undefined && data.val().message !== "") {
-       this.setState(prevState => ({ messageArray: [...prevState.messageArray, data.val().message]})); 
+
+    var that = this;
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        let refMessage = "/polls/" + that.props.match.params.pollId + "/votes";
+        that.messageRef = database.ref(refMessage);
+        that.messageRef.on('child_added', (data) => {
+          if (data.val().message !== undefined && data.val().message !== "") {
+            that.setState(prevState => ({ messageArray: [...prevState.messageArray, data.val().message] }));
+          }
+        });
+      } else {
+        // No user is signed in.
       }
     });
 
+
   }
-  
+
   componentWillUnmount() {
-   this.countRef.off(); 
-   this.messageRef.off();
+    this.countRef.off();
+    this.messageRef.off();
+  }
+
+  addCount(countArray) {
+
+    let total = (countArray[0] || 0) + (countArray[1] || 0) + (countArray[2] || 0) + (countArray[3] || 0);
+
+    return Number.isInteger(total) ? total : 0;
   }
 
   render() {
     const { classes } = this.props;
     let listMessage = this.state.messageArray.map((message, index) => <Grow in={this.state.showComments} key={index}><Paper className={classes.paper}><Typography variant="body1" gutterBottom>{message}</Typography></Paper></Grow>);
 
+    let totalCount = this.addCount(this.state.countArray);
+
     return (
       <div className={classes.contentContainer}>
         <div className={classes.header}>
           <Typography variant="h2" gutterBottom>Poll ID: {this.props.match.params.pollId} </Typography>
         </div>
+        <div className={classes.total}>
+          <Typography variant="h5" gutterBottom>Total votes: {totalCount}</Typography>
+        </div>
         <div className={classes.voteContainer}>
-          <BarChart download={this.props.match.params.pollId} data={[["Love"	, this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
+          <BarChart download={this.props.match.params.pollId} data={[["Love", this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
         </div>
         <div className={classes.msgContainer}>
-          <Typography variant="h5" component="h3">Comments <Switch checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
-           {listMessage}
+          <Typography variant="h5" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
+          {listMessage}
         </div>
       </div>
     );
