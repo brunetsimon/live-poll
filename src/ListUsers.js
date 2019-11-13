@@ -109,9 +109,9 @@ class ListUsers extends Component {
   listAllUsers() {
     let API_URL = "";
     if (process.env.NODE_ENV === 'production') {
-      API_URL = "/api/test";
+      API_URL = "/api/users";
     } else {
-      API_URL = "https://votenow.se/api/test";
+      API_URL = "/api/test";
      // API_URL = "http://localhost:5000/votingapp-46f38/us-central1/api/users";
     }
 
@@ -125,6 +125,7 @@ class ListUsers extends Component {
       this.props.user.getIdToken().then(function(token) {
         axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}}).then(function (response) {
           console.log(response);
+          this.setState({users = response.data});
         }).catch(function (error) {
           console.log(error);
         }).finally(function() {
@@ -204,11 +205,11 @@ class ListUsers extends Component {
     }
     const { classes } = this.props;
 
-    let listPolls = this.state.polls.map(poll => (
-      <ListItem key={poll.pollId} role={undefined} button onClick={this.handlePollClick(poll.pollId)}>
-        <ListItemText primary={`${poll.pollId}`} secondary={`${poll.pollName}`} />
+    let listUsers = this.state.users.map(user => (
+      <ListItem key={user.email} role={undefined} button onClick={this.handlePollClick(user.email)}>
+        <ListItemText primary={`${user.email}`} />
         <ListItemSecondaryAction>
-          <IconButton aria-label="Delete" onClick={this.handleDeleteClick(poll.pollId)}>
+          <IconButton aria-label="Delete" onClick={this.handleDeleteClick(user.email)}>
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
@@ -223,7 +224,7 @@ class ListUsers extends Component {
         <div className={classes.clearfix}></div>
         <Typography className={classes.title} component="h1" variant="h4" gutterBottom>List all users</Typography>
         <List subheader={<ListSubheader component="div">List of all users:</ListSubheader>}>
-          {listPolls}
+          {listUsers}
         </List>
         <AlertDelete open={this.state.open} onClose={this.handleOnClose} pollId={this.state.pollToRemove} />
         <Snackbar
