@@ -13,7 +13,7 @@ import { database } from './database.js';
 import AlertDelete from './AlertDelete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
-import { auth } from 'firebase';
+// import { auth } from 'firebase';
 
 
 const styles = {
