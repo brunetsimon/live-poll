@@ -10,10 +10,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { database } from './database.js';
-// import { auth } from "./database.js";
 import AlertDelete from './AlertDelete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
+// import { auth } from 'firebase';
 
 
 const styles = {
@@ -60,8 +60,9 @@ class ListUsers extends Component {
 
   componentDidMount() {
 
+    
 
-    this.listAllUsers();
+    //this.listAllUsers();
 
     /* let pollRef = database.ref("/polls/");
 
@@ -106,14 +107,33 @@ class ListUsers extends Component {
   }
 
   listAllUsers() {
-    axios.get('/api/users').then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
-      console.log(error);
-    }).finally(function() {
-      console.log("finally");
+    let API_URL = "";
+    if (process.env.NODE_ENV === 'production') {
+      API_URL = "/api/test";
+    } else {
+      API_URL = "https://votenow.se/api/test";
+     // API_URL = "http://localhost:5000/votingapp-46f38/us-central1/api/users";
+    }
+
+    console.log("in ListAllusers");
+    
+    if (this.props.user == null) {      
+      throw new Error('Not authenticated. Make sure you\'re signed in!');
+    } else {
+      console.log(this.props.user);
       
-    });
+      this.props.user.getIdToken().then(function(token) {
+        axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}}).then(function (response) {
+          console.log(response);
+        }).catch(function (error) {
+          console.log(error);
+        }).finally(function() {
+          console.log("finally");
+        });
+      });
+    }
+    
+    
       
   }
  /*  listAllUsers() {
@@ -176,6 +196,12 @@ class ListUsers extends Component {
 
   render() {
 
+
+    if(this.props.user != null) {
+      console.log("user not null");
+      this.listAllUsers();
+      
+    }
     const { classes } = this.props;
 
     let listPolls = this.state.polls.map(poll => (
