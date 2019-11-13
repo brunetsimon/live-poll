@@ -76,3 +76,15 @@
 [debug] [2019-11-13T13:03:01.319Z] [runtime-status] Ephemeral server survived. {}
 [info] i  functions: Finished "api" in ~1s
 [debug] [2019-11-13T13:03:01.320Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: IDLE
+[debug] [2019-11-13T16:32:16.402Z] Accepted request GET /votingapp-46f38/us-central1/api/test --> api
+[debug] [2019-11-13T16:32:16.403Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: BUSY
+[debug] [2019-11-13T16:32:16.410Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-11-13T16:32:16.414Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-11-13T16:32:16.414Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2019-11-13T16:32:16.416Z] {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T16:32:16.418Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T16:32:16.420Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-13T16:32:16.424Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-11-13T16:32:16.425Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: IDLE
