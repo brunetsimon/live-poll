@@ -111,7 +111,7 @@ class ListUsers extends Component {
     if (process.env.NODE_ENV === 'production') {
       API_URL = "/api/users";
     } else {
-      API_URL = "/api/test";
+      API_URL = "https://votenow.se/api/test";
      // API_URL = "http://localhost:5000/votingapp-46f38/us-central1/api/users";
     }
 
@@ -125,7 +125,7 @@ class ListUsers extends Component {
       this.props.user.getIdToken().then(function(token) {
         axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}}).then(function (response) {
           console.log(response);
-          this.setState({users = response.data});
+          this.setState({users: response.data});
         }).catch(function (error) {
           console.log(error);
         }).finally(function() {
