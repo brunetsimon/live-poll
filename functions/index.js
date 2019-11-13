@@ -24,6 +24,8 @@ admin.initializeApp({
 });
 const express = require('express');
 const app = express();
+const cors = require('cors')({origin: true});
+
 
 
 
@@ -71,6 +73,8 @@ exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId
       });
 });
 
+
+app.use(cors);
 // Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
 // The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
 // `Authorization: Bearer <Firebase ID Token>`.
@@ -92,10 +96,14 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-app.use(authenticate); 
+//app.use(authenticate); 
+
 
 // GET /api/users
 // Get all users
+app.get('/api/test', async (req,res) => {
+  res.send("Hello Simon");
+});
 app.get('/api/users', async (req, res) => {
 
   try {

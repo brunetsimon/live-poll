@@ -14,9 +14,35 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [ {
-      "source": "**",
-      "destination": "/index.html"
-    } ]
+    "rewrites": [
+      {
+        "source": "/admin{,/**}",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/client{,/**}",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/server{,/**}",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/login{,/**}",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/signup{,/**}",
+        "destination": "/index.html"
+      },
+      /* {
+        "source": "**",
+        "destination": "/index.html"
+      }, */
+      {
+        "source": "/api{,/**}",
+        "function": "api"
+      }
+    ]
   }
 }

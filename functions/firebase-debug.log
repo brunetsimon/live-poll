@@ -1,0 +1,78 @@
+[debug] [2019-11-13T12:57:32.695Z] ----------------------------------------------------------------------
+[debug] [2019-11-13T12:57:32.698Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sbrun\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only functions
+[debug] [2019-11-13T12:57:32.698Z] CLI Version:   7.7.0
+[debug] [2019-11-13T12:57:32.698Z] Platform:      win32
+[debug] [2019-11-13T12:57:32.698Z] Node Version:  v11.10.0
+[debug] [2019-11-13T12:57:32.699Z] Time:          Wed Nov 13 2019 13:57:32 GMT+0100 (Central European Standard Time)
+[debug] [2019-11-13T12:57:32.699Z] ----------------------------------------------------------------------
+[debug] [2019-11-13T12:57:32.699Z] 
+[info] i  Starting emulators: ["functions"]
+[warn] !  Your requested "node" version "8" doesn't match your global version "11"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\sbrun\Documents\Sites\live-poll\functions" for Cloud Functions...
+[debug] [2019-11-13T12:57:35.260Z] [worker-~diagnostic~-8c6b44f2-c092-4ea1-96a0-35a564aca689]: BUSY
+[debug] [2019-11-13T12:57:35.626Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions","node_version":"11.10.0"}
+[debug] [2019-11-13T12:57:35.627Z] [runtime-status] Disabled runtime features: undefined {}
+[debug] [2019-11-13T12:57:35.630Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-13T12:57:35.631Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:57:36.016Z] [runtime-status] Found google-gax at C:\Users\sbrun\Documents\Sites\live-poll\functions\node_modules\google-gax\build\src\index.js {}
+[debug] [2019-11-13T12:57:36.017Z] [runtime-status] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2019-11-13T12:57:36.058Z] [runtime-status] Checked functions.config() {"config":{}}
+[debug] [2019-11-13T12:57:36.058Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:57:36.059Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-13T12:57:36.059Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:57:36.108Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-11-13T12:57:36.158Z] [runtime-status] initializeApp(DEFAULT) {"databaseURL":"https://votingapp-46f38.firebaseio.com","storageBucket":"votingapp-46f38.appspot.com","projectId":"votingapp-46f38","credential":{"certificate":{"projectId":"votingapp-46f38","privateKey":"-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQChyTEHTyI4fGg2\nI7/tr5i97mz6zKB/nC53LBdwZTQg7YY3SLxHnNwq5jW/YNJcoWbumbS9ILnxEjeB\niggcuOnoEK9ipTubJUAycuT/+8fC9FMLcHRU2A/hOmHap1pGnQ9n7TySZIFRg1N9\n3Sk99bm9wNg/2wgV4cEg/+Di3XTmlJTp189ZS8YFsmJ0YaPL3/X3zGXvCGGWLHN2\nftIXJkAhMfS9l/ukPy1rkMl6yVzFMgfkwaGd0MaCyO7U9qR6uvooszE2pykBQmk/\nwDEWc0Hs0STgtqetvzPiU3OSRk0epgQ20FeAoIeX3hL95dF5OdVJv9aKiQGxOTav\naaKmwvHpAgMBAAECggEADZtmTD8Tmbyc5zDKi6shJZhQAigDt7fjEJLcxc89Oye/\nChdL/pnqypDiJF54UuIgTiEPWnjOKsBlerepRwEmayY8Ggfbo4jWhWe0avM6MeNq\nuKOUpS4m58KJSGKa7SV4jj0dwxJA7iIle4iGV3e7T4JQrc42N+Ds5WGgAHSvyFTE\neLoJ+3jD78K/i1Cg5l4xLDkz3gN8Kf+v8MA8qHn8ct5DPVmn73hMLKZJrBRElfam\nffkdsR4IPsshp6gHly/4ZqTap/MdmzkiWTB+0eNjVhmLCQdJzSCf/aGfFWfKk0gw\ncIEZ+TG4xwaWS8CygMJ1489dN0I+Qm0iR8IDXoKkoQKBgQDcxeX8gy/OmpGghC7r\nHhX4peeb3N6Q9u9BZ+Vi1n6tQyFq0RBBZ85BPz7kKNVb7617CZAQ0CvN6VWDgqHo\n//r93HT5mi7i9jIXa9VxNpUneUzUmxhY5jST/naNNrC/BONDKlaJdpqrG3mW+U1a\n2p332wG6XOpX9iHFbNypkMVtNwKBgQC7mcvMorUS45J8LR/ysA99w9mjd0F+QQ6p\nTiBtu7ObMA1IXOIkE484e7fHfGflm2e71Cb976eCOLC0Y1gcfb4lmsSotjXhDtZ4\nXIQzURa1Udm30NfEW06RG+R7xGoVkyFTx6q8GRW/GTemo0uiBgqmhegMQ/Al+/Sr\nXdif440p3wKBgQCqINq9Pz7tAFHul04soy+dQAP+KTNeFNyE05KCGvbdf9jVnqvf\nKyZXQ2ysmAbq5QUTxme9fR30fLYINPeePPzm+icuXbF59uzc/Z0qtDw2ghRB1g7q\nGuQzk6k54wZK/XJARPUQ01QXPYHyZMVGmSeYY62uNoHkLOkTYXOeO9DX+wKBgC7Y\nV7CwzIB7/T8u0XR7jFK+TiFojR0mx691R9m+7jmJRTfVoc6aZ8AV/K0+nn8SUFPx\nxQ7SAkUdPNq+l+j9aTbgr8zlOw0I9Hs3tvdNf1slpjUlXEu29SZ9DY/uWwMqKz9N\nc4/mv6xpcqEU07UQxyYP+ALgEB6cDNuh4o8CdmSHAoGAU+gn+WmAI29F8DP46xFf\nyD5Ced/NEswxpAlYOdmdd/IB/rZI4rN8L8Q+AqhEVS+qE3K6JTa91k9lvpdnDgFU\nE5N/VjOZOA27HD6LBSgqMLoS846DBqPXIFDNcgyJoO0bxjg4cTOSoWMFQh8zse7A\nbABAmfLwOLgSsva31vvI/S8=\n-----END PRIVATE KEY-----\n","clientEmail":"firebase-adminsdk-v6olj@votingapp-46f38.iam.gserviceaccount.com"},"httpClient":{"retry":{"maxRetries":4,"statusCodes":[503],"ioErrorCodes":["ECONNRESET","ETIMEDOUT"],"backOffFactor":0.5,"maxDelayInMillis":60000}}}}
+[info] +  functions[api]: http function initialized (http://localhost:5001/votingapp-46f38/us-central1/api).
+[info] i  functions[countlikechange]: function ignored because the database emulator does not exist or is not running.
+[info] +  All emulators started, it is now safe to connect.
+[debug] [2019-11-13T12:57:36.352Z] [worker-~diagnostic~-8c6b44f2-c092-4ea1-96a0-35a564aca689]: exited
+[debug] [2019-11-13T12:57:36.352Z] [worker-~diagnostic~-8c6b44f2-c092-4ea1-96a0-35a564aca689]: FINISHED
+[debug] [2019-11-13T12:58:05.256Z] Accepted request GET /votingapp-46f38/us-central1/api/test --> api
+[debug] [2019-11-13T12:58:05.259Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: BUSY
+[debug] [2019-11-13T12:58:05.653Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions","node_version":"11.10.0"}
+[debug] [2019-11-13T12:58:05.654Z] [runtime-status] Disabled runtime features: undefined {}
+[debug] [2019-11-13T12:58:05.658Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-13T12:58:05.659Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:58:05.929Z] [runtime-status] Found google-gax at C:\Users\sbrun\Documents\Sites\live-poll\functions\node_modules\google-gax\build\src\index.js {}
+[debug] [2019-11-13T12:58:05.929Z] [runtime-status] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2019-11-13T12:58:05.973Z] [runtime-status] Checked functions.config() {"config":{}}
+[debug] [2019-11-13T12:58:05.974Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:58:05.975Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-13T12:58:05.975Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-13T12:58:06.018Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.7.0","resolution":"C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-11-13T12:58:06.069Z] [runtime-status] initializeApp(DEFAULT) {"databaseURL":"https://votingapp-46f38.firebaseio.com","storageBucket":"votingapp-46f38.appspot.com","projectId":"votingapp-46f38","credential":{"certificate":{"projectId":"votingapp-46f38","privateKey":"-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQChyTEHTyI4fGg2\nI7/tr5i97mz6zKB/nC53LBdwZTQg7YY3SLxHnNwq5jW/YNJcoWbumbS9ILnxEjeB\niggcuOnoEK9ipTubJUAycuT/+8fC9FMLcHRU2A/hOmHap1pGnQ9n7TySZIFRg1N9\n3Sk99bm9wNg/2wgV4cEg/+Di3XTmlJTp189ZS8YFsmJ0YaPL3/X3zGXvCGGWLHN2\nftIXJkAhMfS9l/ukPy1rkMl6yVzFMgfkwaGd0MaCyO7U9qR6uvooszE2pykBQmk/\nwDEWc0Hs0STgtqetvzPiU3OSRk0epgQ20FeAoIeX3hL95dF5OdVJv9aKiQGxOTav\naaKmwvHpAgMBAAECggEADZtmTD8Tmbyc5zDKi6shJZhQAigDt7fjEJLcxc89Oye/\nChdL/pnqypDiJF54UuIgTiEPWnjOKsBlerepRwEmayY8Ggfbo4jWhWe0avM6MeNq\nuKOUpS4m58KJSGKa7SV4jj0dwxJA7iIle4iGV3e7T4JQrc42N+Ds5WGgAHSvyFTE\neLoJ+3jD78K/i1Cg5l4xLDkz3gN8Kf+v8MA8qHn8ct5DPVmn73hMLKZJrBRElfam\nffkdsR4IPsshp6gHly/4ZqTap/MdmzkiWTB+0eNjVhmLCQdJzSCf/aGfFWfKk0gw\ncIEZ+TG4xwaWS8CygMJ1489dN0I+Qm0iR8IDXoKkoQKBgQDcxeX8gy/OmpGghC7r\nHhX4peeb3N6Q9u9BZ+Vi1n6tQyFq0RBBZ85BPz7kKNVb7617CZAQ0CvN6VWDgqHo\n//r93HT5mi7i9jIXa9VxNpUneUzUmxhY5jST/naNNrC/BONDKlaJdpqrG3mW+U1a\n2p332wG6XOpX9iHFbNypkMVtNwKBgQC7mcvMorUS45J8LR/ysA99w9mjd0F+QQ6p\nTiBtu7ObMA1IXOIkE484e7fHfGflm2e71Cb976eCOLC0Y1gcfb4lmsSotjXhDtZ4\nXIQzURa1Udm30NfEW06RG+R7xGoVkyFTx6q8GRW/GTemo0uiBgqmhegMQ/Al+/Sr\nXdif440p3wKBgQCqINq9Pz7tAFHul04soy+dQAP+KTNeFNyE05KCGvbdf9jVnqvf\nKyZXQ2ysmAbq5QUTxme9fR30fLYINPeePPzm+icuXbF59uzc/Z0qtDw2ghRB1g7q\nGuQzk6k54wZK/XJARPUQ01QXPYHyZMVGmSeYY62uNoHkLOkTYXOeO9DX+wKBgC7Y\nV7CwzIB7/T8u0XR7jFK+TiFojR0mx691R9m+7jmJRTfVoc6aZ8AV/K0+nn8SUFPx\nxQ7SAkUdPNq+l+j9aTbgr8zlOw0I9Hs3tvdNf1slpjUlXEu29SZ9DY/uWwMqKz9N\nc4/mv6xpcqEU07UQxyYP+ALgEB6cDNuh4o8CdmSHAoGAU+gn+WmAI29F8DP46xFf\nyD5Ced/NEswxpAlYOdmdd/IB/rZI4rN8L8Q+AqhEVS+qE3K6JTa91k9lvpdnDgFU\nE5N/VjOZOA27HD6LBSgqMLoS846DBqPXIFDNcgyJoO0bxjg4cTOSoWMFQh8zse7A\nbABAmfLwOLgSsva31vvI/S8=\n-----END PRIVATE KEY-----\n","clientEmail":"firebase-adminsdk-v6olj@votingapp-46f38.iam.gserviceaccount.com"},"httpClient":{"retry":{"maxRetries":4,"statusCodes":[503],"ioErrorCodes":["ECONNRESET","ETIMEDOUT"],"backOffFactor":0.5,"maxDelayInMillis":60000}}}}
+[debug] [2019-11-13T12:58:06.238Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-11-13T12:58:06.239Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-11-13T12:58:06.239Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2019-11-13T12:58:06.247Z] {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T12:58:06.248Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T12:58:06.254Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-13T12:58:06.262Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-11-13T12:58:06.265Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: IDLE
+[debug] [2019-11-13T13:02:59.480Z] Accepted request GET /votingapp-46f38/us-central1/api/test --> api
+[debug] [2019-11-13T13:02:59.480Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: BUSY
+[debug] [2019-11-13T13:02:59.481Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-11-13T13:02:59.482Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-11-13T13:02:59.482Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2019-11-13T13:02:59.482Z] {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T13:02:59.483Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T13:02:59.484Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-13T13:02:59.485Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-11-13T13:02:59.486Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: IDLE
+[debug] [2019-11-13T13:03:01.313Z] Accepted request GET /votingapp-46f38/us-central1/api/test --> api
+[debug] [2019-11-13T13:03:01.313Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: BUSY
+[debug] [2019-11-13T13:03:01.313Z] [runtime-status] Trigger "api" has been found, beginning invocation! {}
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-11-13T13:03:01.315Z] [runtime-status]  {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-11-13T13:03:01.315Z] [runtime-status] Running api in mode HTTPS {}
+[debug] [2019-11-13T13:03:01.315Z] {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T13:03:01.316Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\Users\\sbrun\\Documents\\Sites\\live-poll\\functions\\6336"}
+[debug] [2019-11-13T13:03:01.318Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-13T13:03:01.319Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-11-13T13:03:01.320Z] [worker-api-df548d6e-4ab8-4e24-8473-63700a544f8d]: IDLE

@@ -22,6 +22,7 @@ class Main extends Component {
   state = {
     authed: false,
     loading: true,
+    user: null
   }
 
   componentDidMount() {
@@ -30,11 +31,13 @@ class Main extends Component {
         this.setState({
           authed: true,
           loading: false,
+          user: user,
         });
       } else {
         this.setState({
           authed: false,
           loading: false,
+          user: null
         });
       }
     });
@@ -56,7 +59,7 @@ class Main extends Component {
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={AdminPage} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/add" component={AddPoll} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/list" component={ListPoll} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={ListUsers} />
+        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
       </Switch>
