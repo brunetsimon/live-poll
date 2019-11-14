@@ -96,7 +96,7 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-//app.use(authenticate); 
+app.use(authenticate); 
 
 
 // GET /api/users
@@ -116,22 +116,11 @@ app.get('/api/users', async (req, res) => {
         email: user.email
       }
     });
-    /* userInfo = admin.auth().listUsers().then((userRecords) => {
-      console.log(userRecords);
-      
-      let usersInfoIn = [];
-      for(var i=0; i<userRecords.users.length;i++) {
-        usersInfoIn.push({"email": userRecords.users[i].email, "uid": userRecords.users[i].uid});
-      }
-      return usersInfoIn;
-    }).catch((error) => {
-      console.log(error);
-    }); */
 
     return res.status(200).send({users});
   } catch(error) {
     console.log('Error getting all users', error.message);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 });
 
