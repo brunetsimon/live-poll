@@ -106,17 +106,29 @@ app.get('/api/test', async (req,res) => {
 });
 app.get('/api/users', async (req, res) => {
 
+  let userInfo = [];
   try {
-    let usersInfo = [];
-    admin.auth().listUsers().then((userRecords) => {
-      return userRecords.users.forEach((user) => {
-        usersInfo.push({"email": user.email});
-      })
+    
+    const listUsers = await admin.auth().listUsers();
+    const users = listUsers.users.map((user) => {
+      return {
+        uid: user.uid,
+        email: user.email
+      }
+    });
+    /* userInfo = admin.auth().listUsers().then((userRecords) => {
+      console.log(userRecords);
+      
+      let usersInfoIn = [];
+      for(var i=0; i<userRecords.users.length;i++) {
+        usersInfoIn.push({"email": userRecords.users[i].email, "uid": userRecords.users[i].uid});
+      }
+      return usersInfoIn;
     }).catch((error) => {
       console.log(error);
-    });
+    }); */
 
-    res.status(200).json(usersInfo);
+    return res.status(200).send({users});
   } catch(error) {
     console.log('Error getting all users', error.message);
     res.sendStatus(500);

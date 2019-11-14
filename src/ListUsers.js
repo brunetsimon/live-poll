@@ -122,8 +122,8 @@ class ListUsers extends Component {
     } else {
       console.log(this.props.user);
       
-      this.props.user.getIdToken().then(function(token) {
-        axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}}).then(function (response) {
+      this.props.user.getIdToken().then((token) => {
+        axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}}).then((response) => {
           console.log(response);
           this.setState({users: response.data});
         }).catch(function (error) {
