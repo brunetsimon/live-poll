@@ -99,7 +99,7 @@ class SignUp extends Component {
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
           <Typography variant="headline" gutterBottom>
-            Login to access the admin dashboard
+            Signup to be able to create new poll
           </Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl
@@ -107,20 +107,10 @@ class SignUp extends Component {
               fullWidth
             >
               <TextField label="email" id="email" value={this.state.email} onChange={this.handleEmailChange} margin="normal"/>
-              {/* <Input
-                id="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-              /> */}
+
               <TextField label="password" id="password1" type="password" autoComplete="current-password" onChange={this.handlePassword1Change} margin="normal"/>
               <TextField label="re-enter password" id="password2" type="password" autoComplete="current-password" onChange={this.handlePassword2Change} margin="normal"/>
-              {/* <Input
-                id="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              /> */}
+
               <FormHelperText id="name-error-text">
                 {this.state.errorMsg}
               </FormHelperText>
@@ -132,7 +122,7 @@ class SignUp extends Component {
               disabled={isInvalid}
               className={classes.button}
             >
-              Login
+              Create new account
             </Button>
           </form>
         </Paper>
