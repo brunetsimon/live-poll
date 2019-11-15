@@ -25,6 +25,7 @@ admin.initializeApp({
 const express = require('express');
 const app = express();
 const cors = require('cors')({origin: true});
+const sgMail = require("@sendgrid/mail");
 
 
 
@@ -96,7 +97,7 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-app.use(authenticate); 
+app.use('/api/users',authenticate); 
 
 
 // GET /api/users
@@ -124,4 +125,43 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
+// GET /api/checkPollExists/{pollId}
+// Check if a poll exists.
+app.get('/api/checkPollExists/:pollId', async (req, res) => {
+  const pollId = req.params.pollId;
+
+  console.log(`LOOKING UP POLL "${pollId}"`);
+
+  try {
+    const snapshot = await admin.database().ref(`/polls/${pollId}`).once('value');
+
+    if (snapshot.exists()) {
+      return res.status(200).send(true);
+    } else {
+      return res.status(200).send(false);
+    }
+    
+  } catch(error) {
+    console.log('Error getting poll details', pollId, error.message);
+    return res.sendStatus(500);
+  }
+});
+
 exports.api = functions.https.onRequest(app);
+
+exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
+
+  console.log('New user created ', user);
+  
+  /* const msg = {
+    to: "myemail@myemail.com",
+    from: "no-reply@myemail.com",
+    subject: `${name} sent you a new message`,
+    text: text,
+    html: text
+  };
+  sgMail.setApiKey(
+    "SENDGRID API KEY"
+  );
+  sgMail.send(msg); */
+});

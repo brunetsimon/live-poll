@@ -10,6 +10,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { database } from "./database.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
+import axios from 'axios';
+
 
 const styles = {
   formContainer: {
@@ -50,28 +52,36 @@ class VotingClientSelector extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // At which path to look in the database
-    let ref = "/polls/" + this.state.pollId;
-
     //Hide possible previous error.
-    this.setState({errorMsg: ""})
+    this.setState({ errorMsg: "" })
 
-    // Check the database.
-    database.ref(ref).once("value", (snap) => {
-      if (snap.val() != null) {
+    let API_URL = "";
+    if (process.env.NODE_ENV === 'production') {
+      API_URL = "/api/checkPollExists";
+    } else {
+      API_URL = "https://votenow.se/api/checkPollExists";
+    }
+
+    //Send a request to the cloud function to check if the poll exists. Return a bool
+    axios.get(`${API_URL}/${this.state.pollId}`).then((response) => {
+      console.log(response);
+      if (response.data) {
         this.props.history.push(`/client/${this.state.pollId}`);
-        // snap (which contain our poll result exists. Let's navigate to our poll.)
-        // code here.
       } else {
         this.setState({
           showError: true,
           errorMsg: "No poll with this ID"
         });
-        // There isn't a poll with this id. Show an error message
-        // code here.
       }
+    }).catch((error) => {
+      console.log(error);
+      this.setState({
+        showError: true,
+        errorMsg: "Couldn't check if the ID exists. Try again."
+      });
     });
-  }
+  };
+
   render() {
     const { classes } = this.props;
     return (
