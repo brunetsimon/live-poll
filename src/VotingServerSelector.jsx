@@ -6,7 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { database } from './database.js';
+import axios from 'axios';
+
 
 const styles = {
   formContainer: {
@@ -40,27 +41,46 @@ class VotingServerSelector extends Component {
   }
 
   handleInputChange(event) {
-    this.setState({pollId: event.target.value, errorMsg: ""});
+    this.setState({ pollId: event.target.value, errorMsg: "" });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    let ref = "/polls/"+this.state.pollId;
-    this.setState({validateStatus: 'validating', errorMsg: ""})
-    database.ref(ref).once('value', (snap) => {
-      if (snap.val() != null) {
+    //Hide possible previous error.
+    this.setState({ errorMsg: "" })
+
+    let API_URL = "";
+    if (process.env.NODE_ENV === 'production') {
+      API_URL = "/api/checkPollExists";
+    } else {
+      API_URL = "https://votenow.se/api/checkPollExists";
+    }
+
+    //Send a request to the cloud function to check if the poll exists. Return a bool
+    axios.get(`${API_URL}/${this.state.pollId}`).then((response) => {
+      console.log(response);
+      if (response.data) {
         this.props.history.push(`/server/${this.state.pollId}`);
       } else {
-        this.setState({showError : true, errorMsg: "Wrong ID"});
+        this.setState({
+          showError: true,
+          errorMsg: "No poll with this ID"
+        });
       }
+    }).catch((error) => {
+      console.log(error);
+      this.setState({
+        showError: true,
+        errorMsg: "Couldn't check if the ID exists. Try again."
+      });
     });
   }
   render() {
 
     const { classes } = this.props;
 
-    return(
+    return (
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
           <Typography variant="headline" gutterBottom>Enter your poll number</Typography>
