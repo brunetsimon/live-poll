@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-
+import VerifyEmail from './utils/VerifyEmail';
 
 const styles = {
   back: {
@@ -44,6 +44,7 @@ class ListUsers extends Component {
       isLoading: true,
       isFetching: false,
       fetchError: false,
+      errormsg: ""
     };
 
   }
@@ -58,9 +59,11 @@ class ListUsers extends Component {
     }
 
     console.log("in ListAllusers");
+    console.log(this.props.user);
     
-    if (this.props.user == null) {      
-      throw new Error('Not authenticated. Make sure you\'re signed in!');
+    if (this.props.user == null || this.props.user.emailVerified === false) {      
+      this.setState({errormsg: "You need to be connected and verify your email"});
+      //throw new Error('Not authenticated. Make sure you\'re signed in!');
     } else {
       console.log(this.props.user);
       
@@ -111,6 +114,8 @@ class ListUsers extends Component {
         <div className={classes.clearfix}></div>
         <Typography className={classes.title} component="h1" variant="h4" gutterBottom>List of all users</Typography>
         <List>
+          <VerifyEmail user={this.props.user} />
+          {this.state.errormsg && <h3>{this.state.errormsg}</h3>}
           {this.state.isLoading ? (<HourglassEmptyIcon />) : listUsers}
         </List>
       </div >

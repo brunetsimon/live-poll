@@ -56,7 +56,7 @@ class Main extends Component {
         <Route exact path="/server" component={VotingServerSelector} />
         <Route path="/server/:pollId" component={VotingServer} />
         {/* <Redirect exact from="/admin" to="/admin/list" /> */}
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={AdminPage} />
+        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={(props) => <AdminPage {...props} user={this.state.user} />} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/add" component={AddPoll} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/list" component={ListPoll} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />

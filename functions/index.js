@@ -26,7 +26,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')({origin: true});
 const sgMail = require("@sendgrid/mail");
-
+sgMail.setApiKey(functions.config().sendgrid.key);
 
 
 
@@ -150,18 +150,29 @@ app.get('/api/checkPollExists/:pollId', async (req, res) => {
 exports.api = functions.https.onRequest(app);
 
 exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
-
-  console.log('New user created ', user);
   
-  /* const msg = {
-    to: "myemail@myemail.com",
-    from: "no-reply@myemail.com",
-    subject: `${name} sent you a new message`,
-    text: text,
-    html: text
+  const msg = {
+    to: functions.config().sendgrid.toemail,
+    from: 'noreply@votenow.se',
+    templateId: 'd-dc73bb00e0aa427a8be7bfe5bca66ae7',
+    dynamic_template_data: {
+      newEmail: user.email,
+    }
   };
-  sgMail.setApiKey(
-    "SENDGRID API KEY"
-  );
-  sgMail.send(msg); */
+
+  //Send email to admin
+  sgMail
+  .send(msg)
+  .then(() => console.log('Mail sent successfully to', user.email))
+  .catch(error => console.error(error.toString()));
+
+  //Send verification email
+  if(!user.emailVerified) {
+    admin.auth().getUser(user.uid)
+    .sendEmailVerification().then(() => console.log("Verification email sent")).
+    catch((error) => console.log(error.toString()));
+  }
+  
+  return null;
+  
 });

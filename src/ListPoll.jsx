@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import VerifyEmail from './utils/VerifyEmail';
+import { auth } from 'firebase';
 
 
 const styles = {
@@ -122,6 +124,7 @@ class ListPoll extends Component {
           <ArrowBackIcon />
         </IconButton>
         <div className={classes.clearfix}></div>
+        <VerifyEmail user={auth().currentUser.emailVerified} />
         <Typography className={classes.title} component="h1" variant="h4" gutterBottom>List all polls</Typography>
         <Button variant="contained" color="secondary" aria-label="Add" component={Link} to="/admin/add">
           Add a poll

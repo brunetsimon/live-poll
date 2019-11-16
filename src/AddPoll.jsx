@@ -9,6 +9,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { database } from './database.js';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import VerifyEmail from './utils/VerifyEmail';
+import { auth } from 'firebase';
 
 const styles = {
   formContainer: {
@@ -80,6 +82,11 @@ class AddPoll extends Component {
       return;
     };
 
+    if (!auth().currentUser.emailVerified) {
+      this.setState({ errorMsg: "You need to verify your email to create a poll" });
+      return;
+    }
+
     this.setState({ errorMsg: "" });
 
     // Order is important since set() override everything
@@ -106,6 +113,7 @@ class AddPoll extends Component {
           <ArrowBackIcon />
         </IconButton>
         <div className={classes.clearfix}></div>
+        <VerifyEmail user={auth().currentUser.emailVerified} />
         <Typography className={classes.title} component="h1" variant="h4" gutterBottom>Create a new poll</Typography>
         <Paper className={classes.formContainer}>
           <form onSubmit={this.handleSubmit}>
