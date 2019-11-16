@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { auth } from "./database.js";
-import VerifyEmail from './utils/VerifyEmail';
+import ErrorIcon from '@material-ui/icons/Error';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import { auth } from "./../database.js";
+
 
 const styles = {
   title: {
@@ -36,7 +36,7 @@ const styles = {
     alignItems: 'center',
   },
 }
-class AdminPage extends Component {
+class VerifyEmail extends Component {
 
   constructor(props) {
     super(props);
@@ -69,15 +69,24 @@ class AdminPage extends Component {
 
     return (
       <div className={classes.container}>
-        <Typography className={classes.title} component="h1" variant="h4" gutterBottom>Admin dashboard</Typography>
-        <VerifyEmail user={this.props.user} />
-        <Button component={Link} to="/admin/list/" variant="contained" color="secondary" className={classes.button}>All polls</Button>
-        <Button component={Link} to="/admin/add/" variant="contained" color="secondary" className={classes.button}>Add a polls</Button>
-        <Button component={Link} to="/admin/users/" variant="contained" color="secondary" className={classes.button}>Manage users</Button>
+        {this.state.showSnack && <SnackbarContent className={classes.snackbar}
+          message={
+            <span className={classes.message}>
+              <ErrorIcon className={classes.icon} />
+              You need to verify your email to create and view polls
+            </span>
+          }
+          action={[
+            <Button key="a" size="small" className={classes.verif} onClick={this.handleSubmit}>
+              Send verification email
+            </Button>
+          ]}
+        />
+        }
       </div>
 
     );
   }
 };
 
-export default withStyles(styles)(AdminPage);
+export default withStyles(styles)(VerifyEmail);

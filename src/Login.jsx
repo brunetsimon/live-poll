@@ -54,10 +54,10 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
     auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => { this.setState({redirect: true}); }, (error) => {
+      .then(() => { this.setState({ redirect: true }); }, (error) => {
         const errorMessage = error.message;
         console.error('signIn', errorMessage);
-        this.setState({errorMsg: errorMessage});
+        this.setState({ errorMsg: errorMessage });
       });
   }
   render() {
@@ -65,10 +65,10 @@ class Login extends Component {
     const { classes } = this.props;
     if (this.state.redirect) {
       return (
-        <Redirect to="/admin/list" />
+        <Redirect to="/admin/" />
       )
     }
-    return(
+    return (
 
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
@@ -80,14 +80,14 @@ class Login extends Component {
               error={this.state.errorMsg !== ""}
               fullWidth
             >
-              <TextField label="email" id="email" value={this.state.email} onChange={this.handleEmailChange} margin="normal"/>
+              <TextField label="email" id="email" value={this.state.email} onChange={this.handleEmailChange} margin="normal" />
               {/* <Input
                 id="email"
                 type="email"
                 value={this.state.email}
                 onChange={this.handleEmailChange}
               /> */}
-              <TextField label="password" id="password" type="password" autoComplete="current-password" onChange={this.handlePasswordChange} margin="normal"/>
+              <TextField label="password" id="password" type="password" autoComplete="current-password" onChange={this.handlePasswordChange} margin="normal" />
               {/* <Input
                 id="password"
                 type="password"

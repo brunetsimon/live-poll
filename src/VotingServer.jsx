@@ -71,15 +71,14 @@ class VotingServer extends Component {
     });
 
 
-    var that = this;
-    auth.onAuthStateChanged(function (user) {
-      if (user) {
+    auth.onAuthStateChanged((user) => {
+      if (user && user.emailVerified) {
         // User is signed in.
-        let refMessage = "/polls/" + that.props.match.params.pollId + "/votes";
-        that.messageRef = database.ref(refMessage);
-        that.messageRef.on('child_added', (data) => {
+        let refMessage = "/polls/" + this.props.match.params.pollId + "/votes";
+        this.messageRef = database.ref(refMessage);
+        this.messageRef.on('child_added', (data) => {
           if (data.val().message !== undefined && data.val().message !== "") {
-            that.setState(prevState => ({ messageArray: [...prevState.messageArray, data.val().message] }));
+            this.setState(prevState => ({ messageArray: [...prevState.messageArray, data.val().message] }));
           }
         });
       } else {
@@ -120,7 +119,7 @@ class VotingServer extends Component {
           <BarChart download={this.props.match.params.pollId} data={[["Love", this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
         </div>
         <div className={classes.msgContainer}>
-          <Typography variant="h5" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
+          <Typography variant="h5" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null || auth.currentUser.emailVerified === false} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
           {listMessage}
         </div>
       </div>

@@ -1,6 +1,16 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "polls": {
+      ".read": "auth.uid != null && auth.token.email_verified == true",
+      ".write": "auth.uid != null && auth.token.email_verified == true",
+      "$uid": {
+        "ratingCount": {
+          ".read": true
+        },
+        "votes": {
+          ".write": "!data.exists() || newData.exists()"
+        }
+      }
+    }
   }
 }
