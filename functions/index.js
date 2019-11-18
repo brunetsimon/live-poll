@@ -27,6 +27,8 @@ const app = express();
 const cors = require('cors')({origin: true});
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(functions.config().sendgrid.key);
+const rp = require('request-promise');
+
 
 
 
@@ -76,6 +78,8 @@ exports.countlikechange = functions.database.ref('/polls/{pollsId}/votes/{pushId
 
 
 app.use(cors);
+app.use(express.json());
+
 // Express middleware that validates Firebase ID Tokens passed in the Authorization HTTP header.
 // The Firebase ID token needs to be passed as a Bearer token in the Authorization HTTP header like this:
 // `Authorization: Bearer <Firebase ID Token>`.
@@ -147,6 +151,64 @@ app.get('/api/checkPollExists/:pollId', async (req, res) => {
   }
 });
 
+// GET /api/checkemail/{email}
+// Check if an email is valid.
+app.get('/api/checkemail/:email', async (req, res) => {
+  const email = req.params.email;
+
+  console.log(`Is "${email}" valid?`);
+
+  try {
+    
+    if (email.indexOf(functions.config().config.acceptedemail) !== -1) {
+      return res.status(200).send(true);
+    } else {
+      return res.status(200).send(false);
+    }
+    
+  } catch(error) {
+    console.log('error check the email', email, error.message);
+    return res.sendStatus(500);
+  }
+});
+
+// POST /api/createuser
+// Create a new user
+app.post('/api/createuser', async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const recaptcha = req.body.recaptcha;
+
+  console.log(`Trying to create a new user: "${email}"`);
+
+  rp({
+    uri: 'https://recaptcha.google.com/recaptcha/api/siteverify',
+    method: 'POST',
+    formData: {
+        secret: functions.config().recaptcha.secretkey,
+        response: recaptcha
+    },
+    json: true
+  }).then(result => {
+    console.log("Captcha result", result);
+    
+    if(result.success) {
+     return admin.auth().createUser({
+        email: email,
+        password: password
+      });
+    } else {
+      return res.status(500).send({error: "Verify the reCaptcha"});
+    }
+  }).then(userRecord => {
+    console.log("New user create with ID", userRecord.uid);
+    return res.status(200).send(true);
+  }).catch(reason => {
+      console.log("Something went wrong", reason)
+      return res.status(500).send({error: reason.errorInfo.message});
+  })
+});
+
 exports.api = functions.https.onRequest(app);
 
 exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
@@ -154,7 +216,7 @@ exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
   const msg = {
     to: functions.config().sendgrid.toemail,
     from: 'noreply@votenow.se',
-    templateId: 'd-dc73bb00e0aa427a8be7bfe5bca66ae7',
+    templateId: functions.config().sendgrid.newusertempid,
     dynamic_template_data: {
       newEmail: user.email,
     }
