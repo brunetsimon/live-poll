@@ -13,7 +13,6 @@ import SignUp from "./SignUp";
 import { auth } from "./database.js";
 import HourglassEmpty from '@material-ui/icons/HourglassEmpty';
 import AdminPage from "./AdminPage";
-
 import { Switch, Route, Redirect } from "react-router-dom";
 import { matchPath } from "react-router";
 
@@ -55,9 +54,8 @@ class Main extends Component {
         <Route path="/client/:pollId" component={VotingClient} />
         <Route exact path="/server" component={VotingServerSelector} />
         <Route path="/server/:pollId" component={VotingServer} />
-        {/* <Redirect exact from="/admin" to="/admin/list" /> */}
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={(props) => <AdminPage {...props} user={this.state.user} />} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/add" component={AddPoll} />
+        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/addpoll" component={AddPoll} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/list" component={ListPoll} />
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
         <Route exact path="/login" component={Login} />

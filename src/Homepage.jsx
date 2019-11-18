@@ -19,20 +19,21 @@ const styles = {
     marginBottom: "30px",
   },
   container: {
-   padding: "20px", 
-   textAlign: "center",
+    padding: "20px",
+    textAlign: "center",
   }
 }
 
 function Homepage(props) {
   const { classes } = props;
-  return(
-  <div className={classes.container}>
-    <Typography className={classes.title} component="h1" variant="h4" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
-    <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button}>Start voting </Button>
-    <Button component={Link} to="/server" variant="contained" color="primary" className={classes.button}>Display a voting graph</Button>
-    <Button component={Link} to="/admin" variant="contained" className={classes.button}>Admin dashboard</Button>
-  </div>
+  return (
+    <div className={classes.container}>
+      <Typography className={classes.title} component="h1" variant="h4" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
+      <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button}>Start voting </Button>
+      <Button component={Link} to="/server" variant="contained" color="primary" className={classes.button}>Display a voting graph</Button>
+      <Button component={Link} to="/admin" variant="contained" className={classes.button}>Admin dashboard</Button>
+      <Button component={Link} to="/signup" variant="contained" className={classes.button}>Sign up to create a poll</Button>
+    </div>
   );
 };
 

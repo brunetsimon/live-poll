@@ -72,8 +72,8 @@ class AdminPage extends Component {
         <Typography className={classes.title} component="h1" variant="h4" gutterBottom>Admin dashboard</Typography>
         <VerifyEmail user={this.props.user} />
         <Button component={Link} to="/admin/list/" variant="contained" color="secondary" className={classes.button}>All polls</Button>
-        <Button component={Link} to="/admin/add/" variant="contained" color="secondary" className={classes.button}>Add a polls</Button>
-        <Button component={Link} to="/admin/users/" variant="contained" color="secondary" className={classes.button}>Manage users</Button>
+        <Button component={Link} to="/admin/addpoll/" variant="contained" color="secondary" className={classes.button}>Add a polls</Button>
+        <Button component={Link} to="/admin/users/" variant="contained" color="secondary" className={classes.button}>List users</Button>
       </div>
 
     );
