@@ -70,7 +70,7 @@ class ListPoll extends Component {
     let pollRef = database.ref("/polls/");
 
     pollRef.on('child_added', (data) => {
-      this.setState((state) => ({ polls: [...state.polls, { pollId: data.key, pollName: data.val().pollName, isOpen: data.val().voteOpen || false }] }));
+      this.setState((state) => ({ polls: [...state.polls, { pollId: data.key, pollName: data.val().pollName, isOpen: data.val().voteOpen || false, createdBy: data.val().createdBy }] }));
     });
 
     pollRef.on('child_changed', (data) => {
@@ -133,6 +133,9 @@ class ListPoll extends Component {
     if (this.state.showOnlyOpen) {
       filteredPolls = filteredPolls.filter(poll => poll.isOpen === true);
     }
+    if (this.state.showOnlyMine) {
+      filteredPolls = filteredPolls.filter(poll => poll.createdBy === auth().currentUser.uid)
+    }
     return filteredPolls;
   }
 
@@ -149,9 +152,6 @@ class ListPoll extends Component {
         <ListItemText primary={`${poll.pollId}`} secondary={`${poll.pollName}`} />
         <ListItemSecondaryAction>
           <ItemMenu callback={this.handleMenuCallback} isOpen={poll.isOpen} pollId={poll.pollId} />
-          {/* <IconButton aria-label="Delete" onClick={this.handleDeleteClick(poll.pollId)}>
-            <DeleteIcon />
-          </IconButton> */}
         </ListItemSecondaryAction>
       </ListItem>
     ));
@@ -168,12 +168,18 @@ class ListPoll extends Component {
           Add a poll
           <AddIcon />
         </Button>
-        <FormGroup row>
+        <FormGroup>
           <FormControlLabel
             control={
               <Checkbox checked={this.state.showOnlyOpen} onChange={this.handleCheckBox('showOnlyOpen')} value="showOnlyOpen" />
             }
             label="Show only open polls"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox checked={this.state.showOnlyMine} onChange={this.handleCheckBox('showOnlyMine')} value="showOnlyMine" />
+            }
+            label="Show only my polls"
           />
         </FormGroup>
         <List subheader={<ListSubheader component="div">List of all polls:</ListSubheader>}>
