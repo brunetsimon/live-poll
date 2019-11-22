@@ -42,18 +42,18 @@ class VerifyEmail extends Component {
     super(props);
 
     this.state = {
-      showSnack: false,
+      hideSnack: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.user.emailVerified) {
-      this.setState({ showSnack: false });
-    } else {
-      this.setState({ showSnack: true });
-    }
+    /*     if (this.props.user.emailVerified) {
+          this.setState({ showSnack: false });
+        } else {
+          this.setState({ showSnack: true });
+        } */
   }
 
   handleSubmit() {
@@ -61,7 +61,7 @@ class VerifyEmail extends Component {
     auth.currentUser.sendEmailVerification()
       .then(console.log("Verification email sent"))
       .catch((error) => console.log("Something went wrong", error))
-      .finally(this.setState({ showSnack: false }));
+      .finally(this.setState({ hideSnack: true }));
   }
 
   render() {
@@ -69,7 +69,7 @@ class VerifyEmail extends Component {
 
     return (
       <div className={classes.container}>
-        {this.state.showSnack && <SnackbarContent className={classes.snackbar}
+        {!this.state.hideSnack && !this.props.user && <SnackbarContent className={classes.snackbar}
           message={
             <span className={classes.message}>
               <ErrorIcon className={classes.icon} />

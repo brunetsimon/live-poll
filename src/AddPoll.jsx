@@ -95,6 +95,7 @@ class AddPoll extends Component {
       'pollName': this.state.pollName,
       'dateCreated': Date.now(),
       'voteOpen': true,
+      'createdBy': auth().currentUser.uid,
     });
     ref = "/polls/" + this.state.pollId + "/ratingCount";
     database.ref(ref).push({
