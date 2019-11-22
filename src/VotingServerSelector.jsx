@@ -52,15 +52,15 @@ class VotingServerSelector extends Component {
 
     let API_URL = "";
     if (process.env.NODE_ENV === 'production') {
-      API_URL = "/api/checkPollExists";
+      API_URL = "/api/checkPoll";
     } else {
-      API_URL = "https://votenow.se/api/checkPollExists";
+      API_URL = "https://votenow.se/api/checkPoll";
     }
 
     //Send a request to the cloud function to check if the poll exists. Return a bool
     axios.get(`${API_URL}/${this.state.pollId}`).then((response) => {
       console.log(response);
-      if (response.data) {
+      if (response.data.exist) {
         this.props.history.push(`/server/${this.state.pollId}`);
       } else {
         this.setState({
@@ -83,7 +83,7 @@ class VotingServerSelector extends Component {
     return (
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom>Enter your poll number</Typography>
+          <Typography variant="headline" gutterBottom>Enter poll number</Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl error={this.state.errorMsg !== ""} fullWidth>
               <Input id="pollId" value={this.state.pollId} onChange={this.handleInputChange} />

@@ -129,9 +129,9 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-// GET /api/checkPollExists/{pollId}
-// Check if a poll exists.
-app.get('/api/checkPollExists/:pollId', async (req, res) => {
+// GET /api/checkPoll/{pollId}
+// Check if a poll exists and/or is open
+app.get('/api/checkPoll/:pollId', async (req, res) => {
   const pollId = req.params.pollId;
 
   console.log(`LOOKING UP POLL "${pollId}"`);
@@ -140,9 +140,14 @@ app.get('/api/checkPollExists/:pollId', async (req, res) => {
     const snapshot = await admin.database().ref(`/polls/${pollId}`).once('value');
 
     if (snapshot.exists()) {
-      return res.status(200).send(true);
+      if(snapshot.val().voteOpen) {
+        return res.status(200).send({exist: true, open: true});
+      } else {
+        return res.status(200).send({exist: true, open: false});
+      }
+      
     } else {
-      return res.status(200).send(false);
+      return res.status(200).send({exist: false, open: null});
     }
     
   } catch(error) {

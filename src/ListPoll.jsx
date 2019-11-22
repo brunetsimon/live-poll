@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { withStyles } from '@material-ui/core/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { database } from './database.js';
 import AlertDelete from './AlertDelete';
 import { Link } from "react-router-dom";
@@ -17,7 +16,13 @@ import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import VerifyEmail from './utils/VerifyEmail';
 import { auth } from 'firebase';
-
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import ItemMenu from "./ItemMenu";
 
 const styles = {
   back: {
@@ -57,6 +62,7 @@ class ListPoll extends Component {
 
     this.handleOnClose = this.handleOnClose.bind(this);
     this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
+    this.handleMenuCallback = this.handleMenuCallback.bind(this);
 
   }
 
@@ -64,10 +70,15 @@ class ListPoll extends Component {
     let pollRef = database.ref("/polls/");
 
     pollRef.on('child_added', (data) => {
-      this.setState((state) => ({ polls: [...state.polls, { pollId: data.key, pollName: data.val().pollName }] }));
+      this.setState((state) => ({ polls: [...state.polls, { pollId: data.key, pollName: data.val().pollName, isOpen: data.val().voteOpen || false }] }));
     });
 
     pollRef.on('child_changed', (data) => {
+      this.setState(prevState => ({
+        polls: prevState.polls.map(
+          poll => (poll.pollId === data.key ? Object.assign(poll, { isOpen: data.val().voteOpen }) : poll)
+        )
+      }));
       console.log("child_changed");
     });
 
@@ -86,8 +97,18 @@ class ListPoll extends Component {
     pollRef.remove();
   }
 
-  handleDeleteClick = pollId => () => {
-    this.setState({ pollToRemove: pollId, open: true });
+  handleMenuCallback(action, pollId, isOpen) {
+
+    let ref = "/polls/" + pollId;
+    let poll = this.state.polls.find(poll => poll.pollId === pollId);
+    if (action === "open") {
+      database.ref(ref).update({
+        'voteOpen': !poll.isOpen,
+      });
+    }
+    if (action === "delete") {
+      this.setState({ pollToRemove: pollId, open: true });
+    }
   }
 
   handleOnClose(answer) {
@@ -103,17 +124,34 @@ class ListPoll extends Component {
     this.setState({ showSnackbar: false });
   }
 
+  handleCheckBox = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+
+  filterPolls() {
+    let filteredPolls = this.state.polls;
+    if (this.state.showOnlyOpen) {
+      filteredPolls = filteredPolls.filter(poll => poll.isOpen === true);
+    }
+    return filteredPolls;
+  }
+
   render() {
 
     const { classes } = this.props;
 
-    let listPolls = this.state.polls.map(poll => (
+    let filteredPolls = this.filterPolls();
+    let listPolls = filteredPolls.map(poll => (
       <ListItem key={poll.pollId} role={undefined} button onClick={this.handlePollClick(poll.pollId)}>
+        <ListItemIcon>
+          {poll.isOpen ? <LockOpenIcon /> : <LockIcon />}
+        </ListItemIcon>
         <ListItemText primary={`${poll.pollId}`} secondary={`${poll.pollName}`} />
         <ListItemSecondaryAction>
-          <IconButton aria-label="Delete" onClick={this.handleDeleteClick(poll.pollId)}>
+          <ItemMenu callback={this.handleMenuCallback} isOpen={poll.isOpen} pollId={poll.pollId} />
+          {/* <IconButton aria-label="Delete" onClick={this.handleDeleteClick(poll.pollId)}>
             <DeleteIcon />
-          </IconButton>
+          </IconButton> */}
         </ListItemSecondaryAction>
       </ListItem>
     ));
@@ -130,6 +168,14 @@ class ListPoll extends Component {
           Add a poll
           <AddIcon />
         </Button>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox checked={this.state.showOnlyOpen} onChange={this.handleCheckBox('showOnlyOpen')} value="showOnlyOpen" />
+            }
+            label="Show only open polls"
+          />
+        </FormGroup>
         <List subheader={<ListSubheader component="div">List of all polls:</ListSubheader>}>
           {listPolls}
         </List>
