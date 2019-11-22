@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import { auth } from "./database.js";
 import Paper from '@material-ui/core/Paper';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
+import VerifyEmail from './utils/VerifyEmail';
 
 const styles = {
   formContainer: {
@@ -34,8 +35,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errorMsg: "",
-      redirect: false
+      errorMsg: ""
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -54,7 +54,7 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
     auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => { this.setState({ redirect: true }); }, (error) => {
+      .then(() => null, (error) => {
         const errorMessage = error.message;
         console.error('signIn', errorMessage);
         this.setState({ errorMsg: errorMessage });
@@ -63,9 +63,13 @@ class Login extends Component {
   render() {
 
     const { classes } = this.props;
-    if (this.state.redirect) {
+    if (auth.currentUser) {
       return (
-        <Redirect to="/admin/" />
+        <div className={classes.contentContainer}>
+          <Typography variant="headline" gutterBottom>Welcome {auth.currentUser.email}</Typography>
+          <VerifyEmail user={auth.currentUser} />
+          <Button component={Link} to="/admin/" variant="contained" color="secondary" className={classes.button}>Go to admin dashboard</Button>
+        </div>
       )
     }
     return (
