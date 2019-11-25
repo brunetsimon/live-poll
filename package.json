@@ -3,24 +3,40 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.4.0",
-    "@material-ui/icons": "^3.0.1",
+    "@material-ui/core": "^4.7.0",
+    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.0",
-    "chart.js": "^2.8.0",
-    "firebase": "^5.9.3",
+    "chart.js": "^2.9.3",
+    "firebase": "^7.5.0",
     "generate-password": "^1.4.2",
-    "npm": "^6.4.1",
-    "react": "^16.6.3",
-    "react-chartkick": "^0.3.0",
-    "react-dom": "^16.6.3",
+    "lodash.clamp": "^4.0.3",
+    "npm": "^6.13.1",
+    "npm-check-updates": "^3.2.1",
+    "react": "^16.12.0",
+    "react-chartkick": "^0.4.0",
+    "react-dom": "^16.12.0",
     "react-google-recaptcha": "^2.0.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^6.0.14"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

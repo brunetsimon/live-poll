@@ -85,8 +85,8 @@ class VotingClient extends Component {
     return (
       <div className={classes.contentContainer}>
         <div className={classes.header}>
-          <Typography variant="headline">Let's vote!</Typography>
-          <Typography variant="headline">Poll ID = {this.props.match.params.pollId}</Typography>
+          <Typography variant="h5">Let's vote!</Typography>
+          <Typography variant="h6">Poll ID = {this.props.match.params.pollId}</Typography>
         </div>
         <div className={classes.voteContainer}>
           {

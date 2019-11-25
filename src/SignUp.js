@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-// import { auth } from "./database.js";
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +18,8 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    flexFlow: "column"
+    flexFlow: "column",
+    padding: "10px"
   },
   button: {
     display: "block",
@@ -30,14 +30,6 @@ const styles = {
     padding: "10px"
   }
 };
-
-/* const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with this E-Mail address already exists.
-  Try to login with this account instead.
-`;
- */
 
 class SignUp extends Component {
 
@@ -133,7 +125,7 @@ class SignUp extends Component {
 
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Signup to be able to create new poll
           </Typography>
           <form onSubmit={this.handleSubmit}>
