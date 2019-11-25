@@ -14,6 +14,19 @@ import HourglassEmpty from '@material-ui/icons/HourglassEmpty';
 import AdminPage from "./AdminPage";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Rating from "./Rating";
+import Navigation from "./Navigation";
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#6246ea"
+    },
+    secondary: {
+      main: "#e45858"
+    },
+  },
+});
 
 class Main extends Component {
 
@@ -47,20 +60,23 @@ class Main extends Component {
   render() {
 
     return (
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/client" component={VotingClientSelector} />
-        <Route path="/client/:pollId" component={VotingClient} />
-        <Route exact path="/server" component={VotingServerSelector} />
-        <Route path="/server/:pollId" component={VotingServer} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={(props) => <AdminPage {...props} user={this.state.user} />} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/addpoll" component={AddPoll} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/list" component={ListPoll} />
-        <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/rating" component={Rating} />
-      </Switch>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/client" component={VotingClientSelector} />
+          <Route path="/client/:pollId" component={VotingClient} />
+          <Route exact path="/server" component={VotingServerSelector} />
+          <Route path="/server/:pollId" component={VotingServer} />
+          <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/" exact component={(props) => <AdminPage {...props} user={this.state.user} />} />
+          <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/addpoll" component={AddPoll} />
+          <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/list" component={ListPoll} />
+          <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/rating" component={Rating} />
+        </Switch>
+      </ThemeProvider>
     );
   }
 }
