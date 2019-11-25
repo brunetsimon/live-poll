@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import VotingClientSelector from "./VotingClientSelector";
 import VotingClient from "./VotingClient";
@@ -14,7 +13,7 @@ import { auth } from "./database.js";
 import HourglassEmpty from '@material-ui/icons/HourglassEmpty';
 import AdminPage from "./AdminPage";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { matchPath } from "react-router";
+import Rating from "./Rating";
 
 class Main extends Component {
 
@@ -60,6 +59,7 @@ class Main extends Component {
         <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/rating" component={Rating} />
       </Switch>
     );
   }

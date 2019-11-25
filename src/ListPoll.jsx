@@ -45,6 +45,11 @@ const styles = {
     textAlign: "center",
     margin: "0 auto"
   },
+  filterContainer: {
+    margin: "20px 0 20px 0",
+    padding: "10px",
+    backgroundColor: "#ddd"
+  }
 }
 
 class ListPoll extends Component {
@@ -58,6 +63,8 @@ class ListPoll extends Component {
       pollToRemove: null,
       open: false,
       showSnackbar: false,
+      showOnlyMine: false,
+      showOnlyOpen: false,
     };
 
     this.handleOnClose = this.handleOnClose.bind(this);
@@ -79,7 +86,6 @@ class ListPoll extends Component {
           poll => (poll.pollId === data.key ? Object.assign(poll, { isOpen: data.val().voteOpen }) : poll)
         )
       }));
-      console.log("child_changed");
     });
 
     pollRef.on('child_removed', (data) => {
@@ -168,7 +174,7 @@ class ListPoll extends Component {
           Add a poll
           <AddIcon />
         </Button>
-        <FormGroup>
+        <FormGroup className={classes.filterContainer}>
           <FormControlLabel
             control={
               <Checkbox checked={this.state.showOnlyOpen} onChange={this.handleCheckBox('showOnlyOpen')} value="showOnlyOpen" />

@@ -94,7 +94,7 @@ class VotingServer extends Component {
     this.messageRef.off();
   }
 
-  addCount(countArray) {
+  sumCount(countArray) {
 
     let total = (countArray[0] || 0) + (countArray[1] || 0) + (countArray[2] || 0) + (countArray[3] || 0);
 
@@ -105,21 +105,21 @@ class VotingServer extends Component {
     const { classes } = this.props;
     let listMessage = this.state.messageArray.map((message, index) => <Grow in={this.state.showComments} key={index}><Paper className={classes.paper}><Typography variant="body1" gutterBottom>{message}</Typography></Paper></Grow>);
 
-    let totalCount = this.addCount(this.state.countArray);
+    let totalCount = this.sumCount(this.state.countArray);
 
     return (
       <div className={classes.contentContainer}>
         <div className={classes.header}>
-          <Typography variant="h2" gutterBottom>Poll ID: {this.props.match.params.pollId} </Typography>
+          <Typography variant="h4" gutterBottom>Poll ID: {this.props.match.params.pollId} </Typography>
         </div>
         <div className={classes.total}>
-          <Typography variant="h5" gutterBottom>Total votes: {totalCount}</Typography>
+          <Typography variant="h6" gutterBottom>Total votes: {totalCount}</Typography>
         </div>
         <div className={classes.voteContainer}>
           <BarChart download={this.props.match.params.pollId} data={[["Love", this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
         </div>
         <div className={classes.msgContainer}>
-          <Typography variant="h5" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null || auth.currentUser.emailVerified === false} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
+          <Typography variant="body1" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null || auth.currentUser.emailVerified === false} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
           {listMessage}
         </div>
       </div>

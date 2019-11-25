@@ -83,7 +83,7 @@ class VotingServerSelector extends Component {
     return (
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom>Enter poll number</Typography>
+          <Typography variant="h5" gutterBottom>Enter poll number</Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl error={this.state.errorMsg !== ""} fullWidth>
               <Input id="pollId" value={this.state.pollId} onChange={this.handleInputChange} />
