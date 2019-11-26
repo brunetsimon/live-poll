@@ -24,6 +24,9 @@ const styles = {
   button: {
     display: "block",
     marginTop: "10px"
+  },
+  signup: {
+    margin: "20px"
   }
 };
 
@@ -76,7 +79,7 @@ class Login extends Component {
 
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
-          <Typography variant="headline" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Login to access the admin dashboard
           </Typography>
           <form onSubmit={this.handleSubmit}>
@@ -85,19 +88,7 @@ class Login extends Component {
               fullWidth
             >
               <TextField label="email" id="email" value={this.state.email} onChange={this.handleEmailChange} margin="normal" />
-              {/* <Input
-                id="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-              /> */}
               <TextField label="password" id="password" type="password" autoComplete="current-password" onChange={this.handlePasswordChange} margin="normal" />
-              {/* <Input
-                id="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              /> */}
               <FormHelperText id="name-error-text">
                 {this.state.errorMsg}
               </FormHelperText>
@@ -112,6 +103,7 @@ class Login extends Component {
             </Button>
           </form>
         </Paper>
+        <Typography variant="body1" className={classes.signup}>Don't have an account? <Link to="/signup">Create one here</Link></Typography>
       </div>
 
     );

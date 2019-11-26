@@ -32,6 +32,9 @@ const styles = {
   },
   note: {
     margin: "20px 0"
+  },
+  error: {
+    margin: "20px 0"
   }
 };
 
@@ -52,7 +55,7 @@ class Vote extends Component {
   }
 
   handleRatingOnClick(rating) {
-    this.setState({ selectedRating: rating });
+    this.setState({ selectedRating: rating, errorMsg: "" });
   }
   handleMessageOnChange(event) {
     this.setState({ message: event.target.value });
@@ -86,8 +89,8 @@ class Vote extends Component {
           margin="normal"
           onChange={this.handleMessageOnChange}
         />
-        <Typography variant="caption" className={classes.note}>Note: Your comment is sent anonymously but visible to all users</Typography>
-        {this.state.errorMsg && <FormHelperText error>{this.state.errorMsg}</FormHelperText>}
+        <Typography variant="body2" className={classes.note}>Note: Your comment is sent anonymously but visible to all users</Typography>
+        {this.state.errorMsg && <FormHelperText error className={classes.error}>{this.state.errorMsg}</FormHelperText>}
         <Button variant="contained" color="primary" onClick={this.handleOnSubmit} fullWidth>
           Submit
         </Button>

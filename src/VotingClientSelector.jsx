@@ -94,7 +94,7 @@ class VotingClientSelector extends Component {
       <div className={classes.contentContainer}>
         <Paper className={classes.formContainer}>
           <Typography variant="h6" gutterBottom>
-            Enter the poll number
+            Enter the poll ID
           </Typography>
           <form onSubmit={this.handleSubmit}>
             <FormControl
