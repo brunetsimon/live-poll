@@ -37,7 +37,7 @@ function Homepage(props) {
   return (
     <div className={classes.container}>
       <Typography className={classes.title} component="h1" variant="h4" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
-      <img src="/img/home.png" className={classes.img} />
+      <img src="/img/home.png" alt="People voting" className={classes.img} />
       <div className={classes.buttonContainer}>
         <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button}>Start voting </Button>
         {/*         <Button component={Link} to="/server" variant="contained" color="primary" className={classes.button}>Display a voting graph</Button>
