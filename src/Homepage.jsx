@@ -7,11 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
-
 const styles = {
   title: {
-    marginTop: "15vh",
-    marginBottom: "10vh",
+    marginTop: "10vh",
+    marginBottom: "8vh",
     fontSize: "1.7em"
   },
   button: {
@@ -25,7 +24,12 @@ const styles = {
   buttonContainer: {
     maxWidth: "300px",
     margin: "0 auto"
-  }
+  },
+  img: {
+    width: "100%",
+    maxWidth: "400px",
+    padding: "0 10px 40px 10px"
+  },
 }
 
 function Homepage(props) {
@@ -33,6 +37,7 @@ function Homepage(props) {
   return (
     <div className={classes.container}>
       <Typography className={classes.title} component="h1" variant="h4" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
+      <img src="/img/home.png" className={classes.img} />
       <div className={classes.buttonContainer}>
         <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button}>Start voting </Button>
         {/*         <Button component={Link} to="/server" variant="contained" color="primary" className={classes.button}>Display a voting graph</Button>
