@@ -70,7 +70,7 @@ class Login extends Component {
       return (
         <div className={classes.contentContainer}>
           <Typography variant="headline" gutterBottom>Welcome {auth.currentUser.email}</Typography>
-          <VerifyEmail user={auth.currentUser} />
+          <VerifyEmail user={auth.currentUser.emailVerified} />
           <Button component={Link} to="/admin/" variant="contained" color="secondary" className={classes.button}>Go to admin dashboard</Button>
         </div>
       )
