@@ -13,7 +13,6 @@ import { auth } from "./database.js";
 import HourglassEmpty from '@material-ui/icons/HourglassEmpty';
 import AdminPage from "./AdminPage";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Rating from "./Rating";
 import Navigation from "./Navigation";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -74,7 +73,6 @@ class Main extends Component {
           <PrivateRoute authed={this.state.authed} load={this.state.loading} path="/admin/users" component={(props) => <ListUsers {...props} user={this.state.user} />} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/rating" component={Rating} />
         </Switch>
       </ThemeProvider>
     );
