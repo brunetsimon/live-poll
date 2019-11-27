@@ -35,10 +35,6 @@
         "source": "/signup{,/**}",
         "destination": "/index.html"
       },
-      /* {
-        "source": "**",
-        "destination": "/index.html"
-      }, */
       {
         "source": "/api{,/**}",
         "function": "api"
