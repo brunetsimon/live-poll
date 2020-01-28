@@ -64,7 +64,7 @@ class VotingClient extends Component {
     }
 
     //Send a request to the cloud function to check if the poll exists. Return a bool
-    axios.get(`${API_URL}/${this.state.pollId}`).then((response) => {
+    axios.get(`${API_URL}/${this.props.match.params.pollId}`).then((response) => {
       console.log(response);
       if (response.data.exist && response.data.open) {
         database.ref(ref).push({
