@@ -214,33 +214,6 @@ app.post('/api/createuser', async (req, res) => {
   })
 });
 
-// POST /api/createuser
-// Create a new user
-app.post('/api/validateemail', async (req, res) => {
-  const uid = req.body.uid;
-
-  console.log(`Trying to force validation of: "${uid}"`);
-
-  admin.auth().getUser(uid)
-  .then((userRecord)  =>{
-    // See the UserRecord reference doc for the contents of userRecord.
-    console.log('Successfully fetched user data:', userRecord.toJSON());
-    admin.auth().updateUser(uid, {
-      emailVerified: true,
-    });
-    return null
-  })
-  .then((newUserRecord) => {
-    console.log('Successfully updated user data:', newUserRecord.toJSON());
-    return res.status(200).send(true);
-  })
-  .catch((error) => {
-    console.log('Error fetching user data:', error);
-  });
-  
-  
-});
-
 exports.api = functions.https.onRequest(app);
 
 exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
@@ -260,12 +233,32 @@ exports.sendEmailNewUser = functions.auth.user().onCreate((user) => {
   .then(() => console.log('Mail sent successfully to', user.email))
   .catch(error => console.error(error.toString()));
 
+  
+
   //Send verification email
   if(!user.emailVerified) {
-    admin.auth().getUser(user.uid)
-    .sendEmailVerification().then(() => console.log("Verification email sent")).
-    catch((error) => console.log(error.toString()));
+    admin.auth().generateEmailVerificationLink(user.email)
+  .then((link) => {
+    const msgVerif = {
+      to: user.email,
+      from: 'noreply@votenow.se',
+      templateId: functions.config().sendgrid.verifemailid,
+      dynamic_template_data: {
+        link: link,
+      }
+    };
+    return sgMail.send(msgVerif)
+  })
+  .then(() => {
+    return console.log("Verif email sent to", user.email);
+  })
+  .catch((error) => {
+    // Some error occurred.
+    console.log("Error", error);
+  });
   }
+
+  
   
   return null;
   
