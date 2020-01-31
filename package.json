@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
+    "cypress:run": "cypress run --record",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "browserslist": {
