@@ -84,7 +84,7 @@ workflows:
       - build
   nightly:
     triggers:
-      - schedule:
+      -schedule:
         cron: "0 0 * * *"
         filters:
           branches:
