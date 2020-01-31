@@ -57,24 +57,25 @@ jobs:
    docker:
       - image: circleci/node:10.18.1-browsers
       - image: cypress/base:10
+    steps:
     - checkout
-      - restore_cache:
-          name: Restore node_modules cache
-          keys:
-            - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v1-node-{{ arch }}-{{ .Branch }}-
-            - v1-node-{{ arch }}-
-      - run:
-          name: Install Packages
-          command: yarn install --frozen-lockfile
-      - run:
-          name: End to end tests
-          command: yarn ci:cypress-run
-      - save_cache:
-          name: Save node_modules cache
-          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
+    - restore_cache:
+        name: Restore node_modules cache
+        keys:
+          - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - v1-node-{{ arch }}-{{ .Branch }}-
+          - v1-node-{{ arch }}-
+    - run:
+        name: Install Packages
+        command: yarn install --frozen-lockfile
+    - run:
+        name: End to end tests
+        command: yarn ci:cypress-run
+    - save_cache:
+        name: Save node_modules cache
+        key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules
 
 workflows:
   version: 2
