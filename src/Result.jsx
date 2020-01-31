@@ -25,7 +25,7 @@ class Result extends Component {
       <div>
         <Card className={classes.card}>
           <CardContent>
-            <img className={classes.media} src={ratingsConst[this.props.rating].img} alt="rating" />
+            <img className={classes.media} src={ratingsConst[this.props.rating].img} alt="rating" data-cy="image" />
           </CardContent>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>

@@ -43,6 +43,9 @@ const styles = {
   paper: {
     padding: "20px",
     margin: "30px 10px",
+  },
+  hide: {
+    display: "none",
   }
 };
 
@@ -118,6 +121,7 @@ class VotingServer extends Component {
         <div className={classes.voteContainer}>
           <BarChart download={this.props.match.params.pollId} data={[["Love", this.state.countArray[0]], ["Good", this.state.countArray[1]], ["Ok", this.state.countArray[2]], ["Bad", this.state.countArray[3]]]} />
         </div>
+        <div className={classes.hide} data-cy="totalLove">{this.state.countArray[0]}</div>
         <div className={classes.msgContainer}>
           <Typography variant="body1" component="h3">Comments (Only admins can show comments) <Switch disabled={auth.currentUser == null || auth.currentUser.emailVerified === false} checked={this.state.showComments} onChange={this.handleSwitch} aria-label="Collapse" /></Typography>
           {listMessage}

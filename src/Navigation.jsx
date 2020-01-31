@@ -44,13 +44,13 @@ class Navigation extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={this.handleDrawer(true)}>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={this.handleDrawer(true)} data-cy="menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               VoteNow.se
             </Typography>
-            <Button color="inherit" component={Link} to="/admin">Admin</Button>
+            <Button color="inherit" component={Link} to="/admin" data-cy="admin">Admin</Button>
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.showDrawer} onClose={this.handleDrawer(false)}>
@@ -62,9 +62,9 @@ class Navigation extends React.Component {
           >
 
             <List>
-              <ListItemLink primary="HomePage" to="/" icon={<HomeIcon />} />
-              <ListItemLink primary="Vote" to="/client" icon={<HowToVoteIcon />} />
-              <ListItemLink primary="Display result" to="/server" icon={<PollIcon />} />
+              <ListItemLink primary="HomePage" to="/" icon={<HomeIcon />} data-cy="home"/>
+              <ListItemLink primary="Vote" to="/client" icon={<HowToVoteIcon />} data-cy="vote"/>
+              <ListItemLink primary="Display result" to="/server" icon={<PollIcon />} data-cy="graph"/>
             </List>
           </div>
         </Drawer>
