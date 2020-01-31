@@ -25,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:run": "cypress run --record",
+    "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "browserslist": {
     "production": [
@@ -38,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^3.8.3",
+    "start-server-and-test": "^1.10.8"
   }
 }

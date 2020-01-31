@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/cypress/integration/examples
 # production
 /build
 

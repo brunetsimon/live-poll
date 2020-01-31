@@ -6,7 +6,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.16.2
+      - image: circleci/node:10.18.1-browsers
+      - image: cypress/base:10
     steps:
       - checkout
       - restore_cache:
@@ -37,6 +38,9 @@ jobs:
           command: |
             cd functions
             echo $SERVICE_KEY > serviceAccountKey.json
+      - run:
+          name: End to end tests
+          command: yarn ci:cypress-run
       # - run:
       #     name: Test
       #     command: yarn test --forceExit

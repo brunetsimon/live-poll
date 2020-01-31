@@ -39,7 +39,7 @@ function Homepage(props) {
       <Typography className={classes.title} component="h1" variant="h4" gutterBottom>ELECTROMOBILITY VOTING APP</Typography>
       <img src="/img/home.png" alt="People voting" className={classes.img} />
       <div className={classes.buttonContainer}>
-        <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button}>Start voting </Button>
+        <Button component={Link} to="/client" variant="contained" color="primary" className={classes.button} data-cy="StartVoting">Start voting</Button>
         {/*         <Button component={Link} to="/server" variant="contained" color="primary" className={classes.button}>Display a voting graph</Button>
         <Button component={Link} to="/admin" variant="contained" className={classes.button}>Admin dashboard</Button>
         <Button component={Link} to="/signup" variant="contained" className={classes.button}>Sign up to create a poll</Button> */}
