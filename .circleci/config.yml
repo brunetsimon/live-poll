@@ -52,6 +52,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
             fi
+  
   cypress:
    docker:
       - image: circleci/node:10.18.1-browsers
@@ -74,6 +75,7 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+
 workflows:
   version: 2
   commit:
