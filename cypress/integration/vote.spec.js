@@ -13,7 +13,7 @@ describe('Select vote', () => {
         cy.get('form')
             .find('[type="text"]').type('CypressTest')
         cy.get('form').submit()
-        cy.wait(1000)
+        cy.wait(3000)
         // Check that we reach the poll page
         cy.contains("Poll ID = CypressTest")
     })

@@ -46,13 +46,14 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+            - cache
       - run:
           name: Deploy
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
             fi
-  
+
   cypress:
     docker:
       - image: circleci/node:10.18.1-browsers
@@ -76,6 +77,7 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+            - cache
 
 workflows:
   version: 2
@@ -84,12 +86,11 @@ workflows:
       - build
   nightly:
     triggers:
-     - schedule:
-        cron: "0 0 * * *"
-        filters:
-          branches:
-            only:
-              - master
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - cypress
-
