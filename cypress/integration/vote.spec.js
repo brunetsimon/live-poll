@@ -39,7 +39,7 @@ describe('Select vote', () => {
 
     it('checks that the total has increased after voting', () => {
         cy.visit("http://localhost:3000/server/CypressTest")
-        cy.wait(2000)
+        cy.wait(5000)
         cy.get('[data-cy=totalLove]').then(($count) => {
             cy.log(parseInt($count.text()))
             cy.log(previousTotal)
