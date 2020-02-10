@@ -46,7 +46,7 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-            - cache
+            - ~/.cache
       - run:
           name: Deploy
           command: |
@@ -77,7 +77,7 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-            - cache
+            - ~/.cache
 
 workflows:
   version: 2
