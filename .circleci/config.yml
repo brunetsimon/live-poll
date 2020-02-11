@@ -46,6 +46,9 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+            - /home/circleci/.cache/Cypress
+            - .cache
+            - cache
             - ~/.cache
       - run:
           name: Deploy
@@ -77,6 +80,9 @@ jobs:
           key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+            - /home/circleci/.cache/Cypress
+            - .cache
+            - cache
             - ~/.cache
 
 workflows:
