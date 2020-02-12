@@ -71,7 +71,12 @@ jobs:
             - v1-node-{{ arch }}-
       - run:
           name: Install Packages
-          command: yarn install --frozen-lockfile
+          command: |
+            yarn install --frozen-lockfile
+            yarn add cypress --dev
+      - run:
+          name: Verify Cypress
+          command: yarn run cypress verify
       - run:
           name: End to end tests
           command: yarn ci:cypress-run
