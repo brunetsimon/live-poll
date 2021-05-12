@@ -6,7 +6,7 @@
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "firebase": "^7.5.0",
     "generate-password": "^1.4.2",
     "lodash.clamp": "^4.0.3",
